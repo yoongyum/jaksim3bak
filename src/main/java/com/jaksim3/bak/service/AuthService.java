@@ -1,9 +1,11 @@
 package com.jaksim3.bak.service;
 
+import com.jaksim3.bak.conifg.jwt.TokenProvider;
 import com.jaksim3.bak.domain.Member;
 import com.jaksim3.bak.domain.MemberRepository;
 import com.jaksim3.bak.web.dto.MemberRequestDto;
 import com.jaksim3.bak.web.dto.MemberResponseDto;
+import com.jaksim3.bak.web.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -35,6 +37,6 @@ public class AuthService {
 
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
 
-        return tokenProvider.generateTokenDto(authentication);
+        return tokenProvider.createTokenDto(authentication);
     }
 }
