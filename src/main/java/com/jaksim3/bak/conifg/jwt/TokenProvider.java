@@ -19,6 +19,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+import static com.jaksim3.bak.conifg.jwt.JwtProperties.*;
+import static com.jaksim3.bak.conifg.jwt.JwtProperties.SECRET;
+
 @Slf4j
 @Component
 public class TokenProvider {
@@ -29,7 +32,7 @@ public class TokenProvider {
     private final Key key;
 
     public TokenProvider(){
-        byte[] keyBytes = Decoders.BASE64.decode(JwtProperties.SECRET);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
     public TokenDto createTokenDto(Authentication authentication){
@@ -40,7 +43,7 @@ public class TokenProvider {
 
         long now = (new Date()).getTime();
 
-        Date tokenExpiresIn  = new Date(now + JwtProperties.ACCESS_TOKEN_EXPIRE_TIME);
+        Date tokenExpiresIn  = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
 
         log.info("TokenExpiresIn  : {}", tokenExpiresIn);
 
