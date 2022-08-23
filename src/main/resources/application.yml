@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    include: mysql
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false
