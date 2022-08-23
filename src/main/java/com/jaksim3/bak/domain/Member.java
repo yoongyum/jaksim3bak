@@ -1,8 +1,11 @@
 package com.jaksim3.bak.domain;
 
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Table(name = "MEMBER")
 public class Member {
