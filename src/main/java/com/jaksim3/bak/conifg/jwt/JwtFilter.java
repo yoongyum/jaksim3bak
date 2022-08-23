@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.jaksim3.bak.conifg.jwt.JwtProperties.HEADER_STRING;
+import static com.jaksim3.bak.conifg.jwt.JwtProperties.TOKEN_PREFIX;
+
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -29,8 +32,8 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     private String resolveToken(HttpServletRequest request){
-        String bearerToken = request.getHeader(JwtProperties.HEADER_STRING);
-        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtProperties.TOKEN_PREFIX)){
+        String bearerToken = request.getHeader(HEADER_STRING);
+        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)){
             return bearerToken.substring(7);
         }
         return null;
