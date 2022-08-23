@@ -2,6 +2,7 @@ package com.jaksim3.bak.conifg;
 
 import com.jaksim3.bak.conifg.jwt.JwtAccessDeniedHandler;
 import com.jaksim3.bak.conifg.jwt.JwtAuthenticationEntryPoint;
+import com.jaksim3.bak.conifg.jwt.JwtSecurityConfig;
 import com.jaksim3.bak.conifg.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
