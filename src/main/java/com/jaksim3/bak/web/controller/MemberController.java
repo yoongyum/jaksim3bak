@@ -1,6 +1,7 @@
-package com.jaksim3.bak.web.dto;
+package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.service.MemberService;
+import com.jaksim3.bak.web.dto.MemberResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
