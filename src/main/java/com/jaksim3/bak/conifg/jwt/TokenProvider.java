@@ -1,4 +1,4 @@
-package com.jaksim3.bak.config.jwt;
+package com.jaksim3.bak.conifg.jwt;
 
 import com.jaksim3.bak.web.dto.TokenDto;
 import io.jsonwebtoken.*;
