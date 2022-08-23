@@ -8,6 +8,8 @@ build/
 ### hide application ###
 src/main/resources/application-mysql.yml
 
+**/jwt/JwtProperties.java
+
 ### STS ###
 .apt_generated
 .classpath
