@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    include: mysql
+    include: config
   devtools:
     livereload:
       enabled: true
@@ -10,3 +10,16 @@ spring:
     cache: false
   thymeleaf:
     cache: false
+  #JPA Setting
+  jpa:
+    show-sql: true #if true, Show DB processing
+    hibernate:
+      ddl-auto: update  #DDL
+    properties:
+      hibernate:
+        format_sql: false
+        highlight_sql: true
+logging:
+  level:
+    org.hibernate.SQL: off
+    org.hibernate.type: off
