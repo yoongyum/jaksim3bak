@@ -5,6 +5,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,20 +20,20 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-import static com.jaksim3.bak.conifg.jwt.JwtProperties.*;
-import static com.jaksim3.bak.conifg.jwt.JwtProperties.SECRET;
-
 @Slf4j
 @Component
 public class TokenProvider {
+
+    static long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 10; // 10분
+    static long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7; // 7일
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
 
     private final Key key;
 
-    public TokenProvider(){
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET);
+    public TokenProvider(@Value("${jwt.secret}") String secretKey){
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
     public TokenDto createTokenDto(Authentication authentication){
