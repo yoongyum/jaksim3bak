@@ -23,7 +23,7 @@ public class Cart {
     @JoinColumn(name="member_id")
     private Member memberId; // 구매자
 
-    @OneToMany(mappedBy = "product_id")
+    @OneToMany(mappedBy = "cart")
     private List<Product> cartItems = new ArrayList<>();
 
 }
