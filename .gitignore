@@ -6,7 +6,9 @@ build/
 !**/src/test/**/build/
 
 ### hide application ###
-src/main/resources/application-mysql.yml
+src/main/resources/application-config.yml
+
+**/jwt/JwtProperties.java
 
 ### STS ###
 .apt_generated
