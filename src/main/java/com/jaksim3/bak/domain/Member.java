@@ -17,6 +17,7 @@ import static lombok.AccessLevel.PROTECTED;
 public class Member {
     @Id
     @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false)
