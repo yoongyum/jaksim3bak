@@ -43,6 +43,9 @@ public class Member {
     @Enumerated(STRING)
     private Job job;
 
+    @Column(nullable = false)
+    private Long availableLoan; //대출 한도
+
     @OneToMany(mappedBy = "member")
     private final List<Product> products = new ArrayList<>();
 
@@ -56,8 +59,13 @@ public class Member {
         this.job = job;
     }
 
-    public String getJob(){
+    public String getJob() {
         return job.getLabel();
+    }
+
+    public Long calLoan() {
+
+        return 0L;
     }
 }
 
