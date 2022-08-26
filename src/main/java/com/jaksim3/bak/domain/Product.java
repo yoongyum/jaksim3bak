@@ -18,11 +18,12 @@ import static lombok.AccessLevel.PROTECTED;
 @Table(name = "PRODUCT")
 public class Product {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
