@@ -1,6 +1,8 @@
 package com.jaksim3.bak.domain;
 
 
+import com.jaksim3.bak.domain.enums.Authority;
+import com.jaksim3.bak.domain.enums.Job;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,19 +40,24 @@ public class Member {
     private int age;
 
     @Column(nullable = false)
-    private String job;
+    @Enumerated(STRING)
+    private Job job;
 
     @OneToMany(mappedBy = "member")
     private final List<Product> products = new ArrayList<>();
 
     @Builder
-    public Member(String username, String email, String password, Authority authority, int age, String job) {
+    public Member(String username, String email, String password, Authority authority, int age, Job job) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.authority = authority;
         this.age = age;
         this.job = job;
+    }
+
+    public String getJob(){
+        return job.getLabel();
     }
 }
 
