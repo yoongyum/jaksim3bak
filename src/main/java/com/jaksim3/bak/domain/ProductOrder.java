@@ -13,23 +13,23 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
-@Table(name = "ORDER")
+@Table(name = "PRODUCTORDER")
 @Entity
-public class Order extends BaseTimeEntity {
+public class ProductOrder extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "order_id")
     private Long id;
 
-    private Long key;   //상품 PK
+    private Long productId;   //상품 PK
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @Builder
-    public Order(Long key, Member member) {
-        this.key = key;
+    public ProductOrder(Long productId, Member member) {
+        this.productId = productId;
         this.member = member;
     }
 }
