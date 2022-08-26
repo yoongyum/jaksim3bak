@@ -12,17 +12,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Service
 public class ProductServiceMain implements ProductService{
 
     private final ProductRepository productRepository;
 
     @Override
-    @Transactional(readOnly = true)
-    public ResponseEntity<List<ProductResponseDto>> findAll() {
-        return ResponseEntity.ok(
-                productRepository.findAll()
-                .stream()
-                .map(ProductResponseDto::of).collect(Collectors.toList()));
+    public List<ProductResponseDto> findAll() {
+        return productRepository.findAll()
+                        .stream()
+                        .map(ProductResponseDto::of).collect(Collectors.toList());
     }
 }

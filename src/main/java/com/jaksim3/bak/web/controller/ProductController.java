@@ -15,9 +15,9 @@ public class ProductController {
 
     private final ProductServiceMain productServiceMain;
 
-    @GetMapping("/productList") // Test
+    @GetMapping("/products") // Test
     public ResponseEntity<List<ProductResponseDto>> getProductList() {
-        return productServiceMain.findAll();
+        return ResponseEntity.ok(productServiceMain.findAll());
     }
 
 }
