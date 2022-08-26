@@ -17,11 +17,6 @@ public class Product {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="member_id")
-    private Member member;
-
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
