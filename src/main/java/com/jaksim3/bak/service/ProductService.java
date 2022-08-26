@@ -1,6 +1,7 @@
 package com.jaksim3.bak.service;
 
-public class ProductService {
+import org.springframework.http.ResponseEntity;
 
-
+public interface ProductService {
+    ResponseEntity<?> findAll();
 }
