@@ -3,6 +3,8 @@ package com.jaksim3.bak.domain.enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public enum Job {
@@ -14,5 +16,12 @@ public enum Job {
     HOUSEWIFE("주부"),
     UNEMPLOYED("무직");
 
-    private final String value;
+    private final String label;
+
+    public static Job valueOfLabel(String label) {
+        return Arrays.stream(values())
+                .filter(value -> value.label.equals(label))
+                .findAny()
+                .orElseThrow(()-> new IllegalArgumentException("직업이 없습니다."));
+    }
 }
