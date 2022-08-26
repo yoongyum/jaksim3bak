@@ -4,17 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+import static lombok.AccessLevel.PROTECTED;
+
+@NoArgsConstructor(access = PROTECTED)
 @Getter
-@Setter
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -41,9 +40,13 @@ public class Product {
 
     private String job;
 
-
-    // 이미 담겨있는 물건 또 담을 경우 수량 증가
-//    public void addCount(int count) {
-//        this.count += count;
-//    }
+    @Builder
+    public Product (String institution, String name, long loan, String logo, int age, String job){
+        this.institution = institution;
+        this.name = name;
+        this.loan = loan;
+        this.logo = logo;
+        this.age = age;
+        this.job = job;
+    }
 }
