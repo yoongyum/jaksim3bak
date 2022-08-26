@@ -13,12 +13,12 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
-@Table(name = "PRODUCTORDER")
+@Table(name = "PRODUCT_ORDER")
 @Entity
 public class ProductOrder extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "product_order_id")
     private Long id;
 
     private Long productId;   //상품 PK
