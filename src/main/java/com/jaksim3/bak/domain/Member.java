@@ -1,6 +1,7 @@
 package com.jaksim3.bak.domain;
 
 
+import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
 import lombok.Builder;
@@ -13,15 +14,16 @@ import java.util.List;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.EnumType.STRING;
+import static javax.persistence.GenerationType.*;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
 @Table(name = "MEMBER")
 @Entity
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
