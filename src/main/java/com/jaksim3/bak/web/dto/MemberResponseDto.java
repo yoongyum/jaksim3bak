@@ -1,6 +1,6 @@
 package com.jaksim3.bak.web.dto;
 
-import com.jaksim3.bak.domain.Member;
+import com.jaksim3.bak.domain.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

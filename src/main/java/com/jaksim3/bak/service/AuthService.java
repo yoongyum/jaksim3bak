@@ -1,8 +1,8 @@
 package com.jaksim3.bak.service;
 
 import com.jaksim3.bak.conifg.jwt.TokenProvider;
-import com.jaksim3.bak.domain.Member;
-import com.jaksim3.bak.domain.MemberRepository;
+import com.jaksim3.bak.domain.member.Member;
+import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.web.dto.MemberRequestDto;
 import com.jaksim3.bak.web.dto.MemberResponseDto;
 import com.jaksim3.bak.web.dto.TokenDto;

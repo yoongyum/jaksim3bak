@@ -1,10 +1,8 @@
 package com.jaksim3.bak.service;
 
-import com.jaksim3.bak.domain.Product;
-import com.jaksim3.bak.domain.ProductRepository;
+import com.jaksim3.bak.domain.product.ProductRepository;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

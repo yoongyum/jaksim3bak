@@ -1,6 +1,7 @@
-package com.jaksim3.bak.domain;
+package com.jaksim3.bak.domain.order;
 
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
+import com.jaksim3.bak.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

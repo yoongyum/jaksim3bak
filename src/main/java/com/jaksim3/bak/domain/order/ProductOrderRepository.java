@@ -1,4 +1,4 @@
-package com.jaksim3.bak.domain;
+package com.jaksim3.bak.domain.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,5 +1,6 @@
-package com.jaksim3.bak.domain;
+package com.jaksim3.bak.domain.product;
 
+import com.jaksim3.bak.domain.cart.Cart;
 import lombok.*;
 
 import javax.persistence.*;

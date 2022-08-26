@@ -1,6 +1,6 @@
 package com.jaksim3.bak.web.dto;
 
-import com.jaksim3.bak.domain.ProductOrder;
+import com.jaksim3.bak.domain.order.ProductOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
