@@ -1,7 +1,8 @@
 package com.jaksim3.bak.web.dto;
 
-import com.jaksim3.bak.domain.Authority;
+import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.Member;
+import com.jaksim3.bak.domain.enums.Job;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class MemberRequestDto {
                 .password(passwordEncoder.encode(password))
                 .username(username)
                 .age(age)
-                .job(job)
+                .job(Job.valueOfLabel(job))
                 .authority(Authority.ROLE_USER)
                 .build();
     }
