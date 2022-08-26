@@ -1,9 +1,15 @@
 package com.jaksim3.bak.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 @NoArgsConstructor(access = PROTECTED)
@@ -19,6 +25,9 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     private Cart cart;
+
+    @OneToMany(mappedBy = "product", cascade = ALL)
+    private List<ProductOrder> productOrder;
 
     @Column(length = 50, nullable = false)
     private String institution;
