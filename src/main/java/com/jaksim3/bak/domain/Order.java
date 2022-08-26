@@ -1,6 +1,8 @@
 package com.jaksim3.bak.domain;
 
+import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,10 +11,11 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
+@Getter
 @NoArgsConstructor(access = PROTECTED)
 @Table(name = "ORDER")
 @Entity
-public class Order {
+public class Order extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "order_id")
