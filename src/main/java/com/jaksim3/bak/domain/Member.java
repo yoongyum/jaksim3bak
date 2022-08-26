@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.EnumType.STRING;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -46,8 +47,8 @@ public class Member {
     @Column(nullable = false)
     private Long availableLoan; //대출 한도
 
-    @OneToMany(mappedBy = "member")
-    private final List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = ALL)
+    private final List<Order> Orders = new ArrayList<>();
 
     @Builder
     public Member(String username, String email, String password, Authority authority, int age, Job job) {
