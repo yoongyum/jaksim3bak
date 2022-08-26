@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.EnumType.STRING;
 import static lombok.AccessLevel.PROTECTED;
@@ -37,6 +39,9 @@ public class Member {
 
     @Column(nullable = false)
     private String job;
+
+    @OneToMany(mappedBy = "member")
+    private final List<Product> products = new ArrayList<>();
 
     @Builder
     public Member(String username, String email, String password, Authority authority, int age, String job) {
