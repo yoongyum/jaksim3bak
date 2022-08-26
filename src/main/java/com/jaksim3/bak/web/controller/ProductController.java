@@ -14,10 +14,10 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping("/products") // Test
-    public List<Product> getProducts() {
-        List<Product> products = productRepository.findAll();
-        return products;
+    @GetMapping("/productList") // Test
+    public List<Product> getProductList() {
+        List<Product> productList = productRepository.findAll();
+        return productList;
     }
 
 }
