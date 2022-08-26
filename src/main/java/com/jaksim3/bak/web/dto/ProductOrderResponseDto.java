@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderResponseDto {
-    private Long key;
+public class ProductOrderResponseDto {
+    private Long productId;
     private LocalDateTime createdDate;
 
-    public static OrderResponseDto of(ProductOrder order) {
-        return OrderResponseDto.builder()
-                .key(order.getProductId())
+    public static ProductOrderResponseDto of(ProductOrder order) {
+        return ProductOrderResponseDto.builder()
+                .productId(order.getProductId())
                 .createdDate(order.getCreatedDate())
                 .build();
     }
