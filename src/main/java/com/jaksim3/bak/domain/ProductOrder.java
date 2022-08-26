@@ -21,15 +21,17 @@ public class ProductOrder extends BaseTimeEntity {
     @Column(name = "product_order_id")
     private Long id;
 
-    private Long productId;   //상품 PK
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @Builder
-    public ProductOrder(Long productId, Member member) {
-        this.productId = productId;
+    public ProductOrder(Product product, Member member) {
+        this.product = product;
         this.member = member;
     }
 }
