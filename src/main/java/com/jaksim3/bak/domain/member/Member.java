@@ -1,6 +1,7 @@
-package com.jaksim3.bak.domain;
+package com.jaksim3.bak.domain.member;
 
 
+import com.jaksim3.bak.domain.order.ProductOrder;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;

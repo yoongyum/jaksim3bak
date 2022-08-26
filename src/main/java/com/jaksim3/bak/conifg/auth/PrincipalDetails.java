@@ -1,6 +1,6 @@
 package com.jaksim3.bak.conifg.auth;
 
-import com.jaksim3.bak.domain.Member;
+import com.jaksim3.bak.domain.member.Member;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
