@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
@@ -40,16 +39,10 @@ class ProductServiceMainTest {
 
     @Test
     void findAll() {
-        ResponseEntity<List<ProductResponseDto>> responseEntity = productServiceMain.findAll();
-        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        List<ProductResponseDto> list = productRepository.findAll()
-//                        .stream()
-//                        .map(ProductResponseDto::of).collect(Collectors.toList());
-//
-//        ProductResponseDto productDto = list.get(0);
-//        Assertions.assertThat(productDto.getInstitution()).isEqualTo("신한은행");
-//        Assertions.assertThat(productDto.getName()).isEqualTo("청년대출");
+        List<ProductResponseDto> list = productServiceMain.findAll();
+        ProductResponseDto productDto = list.get(0);
 
-
+        Assertions.assertThat(productDto.getInstitution()).isEqualTo("신한은행");
+        Assertions.assertThat(productDto.getName()).isEqualTo("청년대출");
     }
 }
