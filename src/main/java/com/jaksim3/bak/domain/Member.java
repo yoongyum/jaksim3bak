@@ -57,15 +57,15 @@ public class Member {
         this.authority = authority;
         this.age = age;
         this.job = job;
+        this.availableLoan = calLoan(age, job.getLimit());
     }
 
     public String getJob() {
         return job.getLabel();
     }
 
-    public Long calLoan() {
-
-        return 0L;
+    public Long calLoan(int age, int limit) {
+        return (long) age * 100_000L + limit;
     }
 }
 
