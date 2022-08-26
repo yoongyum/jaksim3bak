@@ -2,13 +2,14 @@ package com.jaksim3.bak.domain.order;
 
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.member.Member;
+import com.jaksim3.bak.domain.product.Product;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
