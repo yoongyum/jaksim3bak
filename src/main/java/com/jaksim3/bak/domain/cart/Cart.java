@@ -1,5 +1,6 @@
 package com.jaksim3.bak.domain.cart;
 
+import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.product.Product;
 import lombok.*;
@@ -9,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "CART")
 public class Cart {
@@ -21,11 +21,22 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
-    private Member memberId; // 구매자
+    private Member member; // 구매자
 
     @OneToMany(mappedBy = "cart")
-    private List<Product> cartItems = new ArrayList<>();
+    private List<CartProduct> cartProductList = new ArrayList<>();
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public void addCartProduct(CartProduct cartProduct) {
+        this.cartProductList.add(cartProduct);
+        if(cartProduct.getCart() != this) {
+            cartProduct.setCart(this);
+        }
+    }
 
 }

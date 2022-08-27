@@ -1,9 +1,12 @@
 package com.jaksim3.bak.domain.product;
 
-import com.jaksim3.bak.domain.cart.Cart;
+import com.jaksim3.bak.domain.cart_product.CartProduct;
 import lombok.*;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static lombok.AccessLevel.PROTECTED;
 
@@ -17,9 +20,8 @@ public class Product {
     @Column(name = "product_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="cart_id")
-    private Cart cart;
+    @OneToMany(mappedBy = "product")
+    private List<CartProduct> cartProductList = new ArrayList<>();
 
     @Column(length = 50, nullable = false)
     private String institution;
@@ -44,5 +46,12 @@ public class Product {
         this.logo = logo;
         this.age = age;
         this.job = job;
+    }
+
+    public void addCartProduct(CartProduct cartProduct) {
+        this.cartProductList.add(cartProduct);
+        if(cartProduct.getProduct() != this) {
+            cartProduct.setProduct(this);
+        }
     }
 }

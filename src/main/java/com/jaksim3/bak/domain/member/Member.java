@@ -1,6 +1,7 @@
 package com.jaksim3.bak.domain.member;
 
 
+import com.jaksim3.bak.domain.cart.Cart;
 import com.jaksim3.bak.domain.order.ProductOrder;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
@@ -50,6 +51,9 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private Long availableLoan; //대출 한도
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private Cart cart;
+
     @OneToMany(mappedBy = "member", cascade = ALL)
     private final List<ProductOrder> Orders = new ArrayList<>();
 
@@ -70,6 +74,11 @@ public class Member extends BaseTimeEntity {
 
     public Long calLoan(int age, int limit) {
         return (long) age * 100_000L + limit;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+        cart.setMember(this);
     }
 }
 
