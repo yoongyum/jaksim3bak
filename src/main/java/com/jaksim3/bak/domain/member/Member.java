@@ -1,10 +1,10 @@
 package com.jaksim3.bak.domain.member;
 
 
-import com.jaksim3.bak.domain.order.ProductOrder;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
+import com.jaksim3.bak.domain.order.ProductOrder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +13,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
-import static javax.persistence.GenerationType.*;
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
@@ -68,8 +68,14 @@ public class Member extends BaseTimeEntity {
         return job.getLabel();
     }
 
-    public Long calLoan(int age, int limit) {
+    private Long calLoan(int age, int limit) {
         return (long) age * 100_000L + limit;
+    }
+
+    public Long getAvailableLoan() {
+        return Long.sum(availableLoan, -orderProducts.stream()
+                .map(productOrder -> productOrder.getProduct().getLoan())
+                .reduce(0L, Long::sum));
     }
 }
 
