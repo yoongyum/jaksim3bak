@@ -51,7 +51,7 @@ public class Member extends BaseTimeEntity {
     private Long availableLoan; //대출 한도
 
     @OneToMany(mappedBy = "member", cascade = ALL)
-    private final List<ProductOrder> Orders = new ArrayList<>();
+    private final List<ProductOrder> orderProducts = new ArrayList<>();
 
     @Builder
     public Member(String username, String email, String password, Authority authority, int age, Job job) {
