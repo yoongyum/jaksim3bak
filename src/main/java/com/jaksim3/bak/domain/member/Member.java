@@ -4,7 +4,7 @@ package com.jaksim3.bak.domain.member;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
-import com.jaksim3.bak.domain.order.ProductOrder;
+import com.jaksim3.bak.domain.order_product.ProductOrder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
