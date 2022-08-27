@@ -18,10 +18,11 @@ public class MemberResponseDto {
     private String username;
     private int age;
     private String job;
-    private List<ProductOrderResponseDto> orders;
+    private Long availableLoan;
+    private List<ProductOrderResponseDto> orderProducts;
 
     public static MemberResponseDto of(Member member) {
-        List<ProductOrderResponseDto> orders = member.getOrders().stream()
+        List<ProductOrderResponseDto> orderProducts = member.getOrderProducts().stream()
                 .map(ProductOrderResponseDto::of)
                 .collect(Collectors.toList());
 
@@ -30,7 +31,8 @@ public class MemberResponseDto {
                 .username(member.getUsername())
                 .age(member.getAge())
                 .job(member.getJob())
-                .orders(orders)
+                .orderProducts(orderProducts)
+                .availableLoan(member.getAvailableLoan())
                 .build();
     }
 }
