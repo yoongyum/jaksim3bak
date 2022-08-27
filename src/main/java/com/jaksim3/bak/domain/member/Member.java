@@ -77,5 +77,9 @@ public class Member extends BaseTimeEntity {
                 .map(orderProduct -> orderProduct.getProduct().getLoan())
                 .reduce(0L, Long::sum));
     }
+
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+    }
 }
 

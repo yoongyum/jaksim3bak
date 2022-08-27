@@ -57,4 +57,8 @@ public class Product {
         this.age = age;
         this.job = job;
     }
+
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+    }
 }
