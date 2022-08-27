@@ -1,7 +1,7 @@
 package com.jaksim3.bak.domain.product;
 
 import com.jaksim3.bak.domain.cart.Cart;
-import com.jaksim3.bak.domain.order_product.ProductOrder;
+import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +31,7 @@ public class Product {
     private Cart cart;
 
     @OneToMany(mappedBy = "product", cascade = ALL)
-    private List<ProductOrder> orderProducts = new ArrayList<>();
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Column(length = 50, nullable = false)
     private String institution;

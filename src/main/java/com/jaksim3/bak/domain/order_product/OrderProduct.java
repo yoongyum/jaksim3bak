@@ -1,4 +1,4 @@
-package com.jaksim3.bak.domain.order;
+package com.jaksim3.bak.domain.order_product;
 
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.member.Member;
@@ -15,12 +15,12 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
-@Table(name = "PRODUCT_ORDER")
+@Table(name = "ORDER_PRODUCT")
 @Entity
-public class ProductOrder extends BaseTimeEntity {
+public class OrderProduct extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "product_order_id")
+    @Column(name = "order_product_id")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
@@ -32,7 +32,7 @@ public class ProductOrder extends BaseTimeEntity {
     private Member member;
 
     @Builder
-    public ProductOrder(Product product, Member member) {
+    public OrderProduct(Product product, Member member) {
         this.product = product;
         this.member = member;
     }

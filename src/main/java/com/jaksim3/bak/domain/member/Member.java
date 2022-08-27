@@ -4,7 +4,7 @@ package com.jaksim3.bak.domain.member;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
-import com.jaksim3.bak.domain.order_product.ProductOrder;
+import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,7 +51,7 @@ public class Member extends BaseTimeEntity {
     private Long availableLoan; //대출 한도
 
     @OneToMany(mappedBy = "member", cascade = ALL)
-    private final List<ProductOrder> orderProducts = new ArrayList<>();
+    private final List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
     public Member(String username, String email, String password, Authority authority, int age, Job job) {
@@ -74,7 +74,7 @@ public class Member extends BaseTimeEntity {
 
     public Long getAvailableLoan() {
         return Long.sum(availableLoan, -orderProducts.stream()
-                .map(productOrder -> productOrder.getProduct().getLoan())
+                .map(orderProduct -> orderProduct.getProduct().getLoan())
                 .reduce(0L, Long::sum));
     }
 }
