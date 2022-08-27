@@ -1,6 +1,6 @@
 package com.jaksim3.bak.web.dto;
 
-import com.jaksim3.bak.domain.order.ProductOrder;
+import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductOrderResponseDto {
-    private Long productId;
+public class OrderProductResponseDto {
+    private ProductResponseDto product;
     private LocalDateTime createdDate;
 
-    public static ProductOrderResponseDto of(ProductOrder order) {
-        return ProductOrderResponseDto.builder()
-                .productId(order.getProductId())
+    public static OrderProductResponseDto of(OrderProduct order) {
+        return OrderProductResponseDto.builder()
+                .product(ProductResponseDto.of(order.getProduct()))
                 .createdDate(order.getCreatedDate())
                 .build();
     }

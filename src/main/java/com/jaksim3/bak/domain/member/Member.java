@@ -2,10 +2,10 @@ package com.jaksim3.bak.domain.member;
 
 
 import com.jaksim3.bak.domain.cart.Cart;
-import com.jaksim3.bak.domain.order.ProductOrder;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
+import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,11 +51,11 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private Long availableLoan; //대출 한도
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "member", cascade = ALL)
     private Cart cart;
 
     @OneToMany(mappedBy = "member", cascade = ALL)
-    private final List<ProductOrder> Orders = new ArrayList<>();
+    private final List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
     public Member(String username, String email, String password, Authority authority, int age, Job job) {
@@ -72,13 +72,23 @@ public class Member extends BaseTimeEntity {
         return job.getLabel();
     }
 
-    public Long calLoan(int age, int limit) {
+    private Long calLoan(int age, int limit) {
         return (long) age * 100_000L + limit;
     }
 
     public void setCart(Cart cart) {
         this.cart = cart;
         cart.setMember(this);
+    }
+
+    public Long getAvailableLoan() {
+        return Long.sum(availableLoan, -orderProducts.stream()
+                .map(orderProduct -> orderProduct.getProduct().getLoan())
+                .reduce(0L, Long::sum));
+    }
+
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
     }
 }
 
