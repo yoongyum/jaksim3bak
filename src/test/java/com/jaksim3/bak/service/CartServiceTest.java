@@ -1,13 +1,13 @@
 package com.jaksim3.bak.service;
 
 import com.jaksim3.bak.domain.cart.Cart;
-import com.jaksim3.bak.domain.cart.CartRepository;
 import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.cart_product.CartProductRepository;
 import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
+import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.CartSaveRequestDto;
+import com.jaksim3.bak.web.dto.CartRequestDto;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -15,11 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @SpringBootTest
@@ -28,6 +24,8 @@ class CartServiceTest {
     private CartService cartService;
     @Autowired
     private CartProductRepository cartProductRepository;
+    @Autowired
+    private ProductRepository productRepository;
     @Autowired
     private MemberRepository memberRepository;
 
@@ -41,17 +39,25 @@ class CartServiceTest {
     }
     @Test
     void save(){
-        ProductResponseDto productDto = cartService.save(CartSaveRequestDto.builder()
+        ProductResponseDto productDto = cartService.save(CartRequestDto.builder()
                 .email(this.email)
                 .productId(this.productId)
                 .build());
         CartProduct cartProduct = cartProductRepository.findAll().get(0);
         Assertions.assertThat(cartProduct.getProduct().getId()).isEqualTo(productId);
     }
-//    @Test
-//    void deleteTest(){
-//        Member member = memberRepository.findByEmail(email).get();
-//        memberRepository.delete(member);
-//
-//    }
+    @Transactional
+    @Test
+    void deleteTest(){
+        Member member = memberRepository.findByEmail(email).get();
+        Long productId = cartService.delete(CartRequestDto.builder()
+                .email(this.email)
+                .productId(this.productId)
+                .build());
+        Assertions.assertThat(member.getCart().getCartProductList()).doesNotContain(
+                CartProduct.builder()
+                        .cart(member.getCart())
+                        .product(productRepository.findById(productId).get()).build()
+        );
+    }
 }
