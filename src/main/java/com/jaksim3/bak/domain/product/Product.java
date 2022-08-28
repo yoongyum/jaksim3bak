@@ -27,7 +27,7 @@ public class Product {
     @Column(name = "product_id")
     private Long id;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = ALL)
     private List<CartProduct> cartProductList = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = ALL)

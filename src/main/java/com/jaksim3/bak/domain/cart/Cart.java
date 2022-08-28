@@ -5,6 +5,9 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.product.Product;
 import lombok.*;
 
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +21,14 @@ import java.util.List;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member; // 구매자
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = ALL)
     private List<CartProduct> cartProductList = new ArrayList<>();
 
     public void setMember(Member member) {
