@@ -40,7 +40,6 @@ class CartServiceTest {
     @Test
     void save(){
         ProductResponseDto productDto = cartService.save(CartRequestDto.builder()
-                .email(this.email)
                 .productId(this.productId)
                 .build());
         CartProduct cartProduct = cartProductRepository.findAll().get(0);
@@ -51,7 +50,6 @@ class CartServiceTest {
     void deleteTest(){
         Member member = memberRepository.findByEmail(email).get();
         Long productId = cartService.delete(CartRequestDto.builder()
-                .email(this.email)
                 .productId(this.productId)
                 .build());
         Assertions.assertThat(member.getCart().getCartProductList()).doesNotContain(

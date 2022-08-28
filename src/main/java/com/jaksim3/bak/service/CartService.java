@@ -1,5 +1,6 @@
 package com.jaksim3.bak.service;
 
+import com.jaksim3.bak.conifg.SecurityUtil;
 import com.jaksim3.bak.domain.cart.Cart;
 import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.cart_product.CartProductRepository;
@@ -29,7 +30,7 @@ public class CartService {
 
     @Transactional
     public ProductResponseDto save(CartRequestDto requestDto) {
-        Member member = memberRepository.findByEmail(requestDto.getEmail()).orElseThrow(
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
         Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
@@ -60,8 +61,8 @@ public class CartService {
         return cartProduct.getProduct().getId();
     }
 
-    public List<ProductResponseDto> getCartProductList(Long memberId) {
-        Member member = memberRepository.findById(memberId).orElseThrow(
+    public List<ProductResponseDto> getCartProductList() {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
         return cartProductRepository.findAllByCart(member.getCart())

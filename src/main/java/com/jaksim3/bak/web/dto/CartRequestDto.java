@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class CartRequestDto {
-    private String email;
     private Long productId;
 
     public CartProduct toEntity(Cart cart, Product product){

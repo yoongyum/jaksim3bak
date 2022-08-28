@@ -32,6 +32,6 @@ public class CartController {
 
     @GetMapping("/cartProducts")
     public ResponseEntity<List<ProductResponseDto>> getCartProducts(){
-        return ResponseEntity.ok(cartService.getCartProductList(SecurityUtil.getCurrentMemberId()));
+        return ResponseEntity.ok(cartService.getCartProductList());
     }
 }
