@@ -55,7 +55,9 @@ public class InterestedService {
 
         return interestedProductRepository.findAllByInterested(member.getInterested())
                 .stream()
-                .map(ProductResponseDto::new).collect(Collectors.toList());
+                .map(interestedProduct -> {
+                    return ProductResponseDto.of(interestedProduct.getProduct());
+                }).collect(Collectors.toList());
     }
 
     @Transactional

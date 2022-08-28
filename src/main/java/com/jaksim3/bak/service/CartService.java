@@ -67,8 +67,9 @@ public class CartService {
 
         return cartProductRepository.findAllByCart(member.getCart())
                 .stream()
-                .map(ProductResponseDto::new)
-                .collect(Collectors.toList());
+                .map(cartProduct -> {
+                    return ProductResponseDto.of(cartProduct.getProduct());
+                }).collect(Collectors.toList());
     }
 
     @Transactional
