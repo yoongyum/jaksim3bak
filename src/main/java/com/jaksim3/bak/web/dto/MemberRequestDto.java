@@ -1,7 +1,7 @@
 package com.jaksim3.bak.web.dto;
 
 import com.jaksim3.bak.domain.enums.Authority;
-import com.jaksim3.bak.domain.Member;
+import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.enums.Job;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

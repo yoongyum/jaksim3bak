@@ -1,4 +1,4 @@
-package com.jaksim3.bak.domain;
+package com.jaksim3.bak.domain.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
