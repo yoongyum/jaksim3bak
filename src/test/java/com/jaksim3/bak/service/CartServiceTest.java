@@ -58,4 +58,9 @@ class CartServiceTest {
                         .product(productRepository.findById(productId).get()).build()
         );
     }
+    @Test
+    @Transactional
+    void deleteAllTest(){
+        cartService.deleteAll();
+    }
 }
