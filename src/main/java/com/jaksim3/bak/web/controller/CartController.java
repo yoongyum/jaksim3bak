@@ -1,14 +1,12 @@
 package com.jaksim3.bak.web.controller;
 
-import com.jaksim3.bak.conifg.SecurityUtil;
-import com.jaksim3.bak.conifg.auth.PrincipalDetails;
 import com.jaksim3.bak.service.CartService;
 import com.jaksim3.bak.web.dto.CartRequestDto;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +18,7 @@ import java.util.List;
 public class CartController {
     private final CartService cartService;
 
-    @GetMapping("/cartProducts")
+    @GetMapping("/products")
     public ResponseEntity<List<ProductResponseDto>> getCartProducts(){
         return ResponseEntity.ok(cartService.getCartProductList());
     }
@@ -31,11 +29,12 @@ public class CartController {
     }
 
     @DeleteMapping
-    public void delete(@RequestBody CartRequestDto requestDto){
+    public ResponseEntity<?> delete(@RequestBody CartRequestDto requestDto){
         cartService.delete(requestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/cartProducts")
+    @DeleteMapping("/products")
     public void deleteAll(){
         cartService.deleteAll();
     }

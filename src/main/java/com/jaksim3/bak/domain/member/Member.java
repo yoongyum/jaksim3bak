@@ -5,6 +5,7 @@ import com.jaksim3.bak.domain.cart.Cart;
 import com.jaksim3.bak.domain.basetime.BaseTimeEntity;
 import com.jaksim3.bak.domain.enums.Authority;
 import com.jaksim3.bak.domain.enums.Job;
+import com.jaksim3.bak.domain.interested.Interested;
 import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,6 +55,9 @@ public class Member extends BaseTimeEntity {
     @OneToOne(mappedBy = "member", cascade = ALL)
     private Cart cart;
 
+    @OneToOne(mappedBy = "member", cascade = ALL)
+    private Interested interested;
+
     @OneToMany(mappedBy = "member", cascade = ALL)
     private final List<OrderProduct> orderProducts = new ArrayList<>();
 
@@ -79,6 +83,10 @@ public class Member extends BaseTimeEntity {
     public void setCart(Cart cart) {
         this.cart = cart;
         cart.setMember(this);
+    }
+    public void setInterested(Interested interested) {
+        this.interested = interested;
+        interested.setMember(this);
     }
 
     public Long getAvailableLoan() {

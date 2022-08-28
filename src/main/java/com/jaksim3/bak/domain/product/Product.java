@@ -1,5 +1,6 @@
 package com.jaksim3.bak.domain.product;
 
+import com.jaksim3.bak.domain.interested_product.InterestedProduct;
 import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +30,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = ALL)
     private List<CartProduct> cartProductList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = ALL)
+    private List<InterestedProduct> interestedProductList = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
@@ -66,6 +70,13 @@ public class Product {
         this.cartProductList.add(cartProduct);
         if(cartProduct.getProduct() != this) {
             cartProduct.setProduct(this);
+        }
+    }
+
+    public void addInterestedProduct(InterestedProduct interestedProduct) {
+        this.interestedProductList.add(interestedProduct);
+        if(interestedProduct.getProduct() != this){
+            interestedProduct.setProduct(this);
         }
     }
 }
