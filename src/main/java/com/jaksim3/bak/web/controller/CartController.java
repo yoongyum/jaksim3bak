@@ -20,6 +20,11 @@ import java.util.List;
 public class CartController {
     private final CartService cartService;
 
+    @GetMapping("/cartProducts")
+    public ResponseEntity<List<ProductResponseDto>> getCartProducts(){
+        return ResponseEntity.ok(cartService.getCartProductList());
+    }
+
     @PostMapping
     public ResponseEntity<ProductResponseDto> save(@RequestBody CartRequestDto requestDto) {
         return  ResponseEntity.ok(cartService.save(requestDto));
@@ -30,8 +35,8 @@ public class CartController {
         cartService.delete(requestDto);
     }
 
-    @GetMapping("/cartProducts")
-    public ResponseEntity<List<ProductResponseDto>> getCartProducts(){
-        return ResponseEntity.ok(cartService.getCartProductList());
+    @DeleteMapping("/cartProducts")
+    public void deleteAll(){
+        cartService.deleteAll();
     }
 }

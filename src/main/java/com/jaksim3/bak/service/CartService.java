@@ -70,4 +70,12 @@ public class CartService {
                 .map(ProductResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void deleteAll() {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
+                () -> new IllegalArgumentException("해당 회원이 없습니다."));
+
+        cartProductRepository.deleteAllInBatch((member.getCart().getCartProductList()));
+    }
 }
