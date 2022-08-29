@@ -1,23 +1,23 @@
 package com.jaksim3.bak.web.controller;
 
-import com.jaksim3.bak.domain.Product;
-import com.jaksim3.bak.domain.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jaksim3.bak.service.ProductServiceMain;
+import com.jaksim3.bak.web.dto.ProductResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductServiceMain productServiceMain;
 
     @GetMapping("/products") // Test
-    public List<Product> getProducts() {
-        List<Product> products = productRepository.findAll();
-        return products;
+    public ResponseEntity<List<ProductResponseDto>> getProductList() {
+        return ResponseEntity.ok(productServiceMain.findAll());
     }
 
 }

@@ -31,6 +31,10 @@ dependencies {
     //p6spy
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
 
+    //jwt
+    //p6spy
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
+
     //swagger
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
@@ -39,6 +43,13 @@ dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
     implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
     implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+
+    //security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // test
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     //security
     implementation 'org.springframework.boot:spring-boot-starter-security'
