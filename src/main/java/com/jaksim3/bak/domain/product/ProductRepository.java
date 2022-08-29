@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByAgeAndJob(int age, String job);
 
     @Query("SELECT p FROM Product p WHERE p.age = :age AND p.job = :job AND p.loan <= :loan")
     List<Product> findLoan(@Param("age") int age, @Param("job") String job, @Param("loan") Long loan);

@@ -1,7 +1,7 @@
 package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.service.ProductServiceMain;
-import com.jaksim3.bak.service.ProductServicePush;
+import com.jaksim3.bak.service.ProductServiceCustomization;
 import com.jaksim3.bak.service.ProductServiceSearch;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import com.jaksim3.bak.web.dto.SearchRequestDto;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductServiceMain productServiceMain;
-    private final ProductServicePush productServicePush;
+    private final ProductServiceCustomization productServicePush;
     private final ProductServiceSearch productServiceSearch;
 
     // 전체 상품 목록
@@ -28,7 +28,7 @@ public class ProductController {
 
     // 맞춤 상품 푸시
     @GetMapping("/customization")
-    public ResponseEntity<List<ProductResponseDto>> getPushList() {
+    public ResponseEntity<List<ProductResponseDto>> getCustomizationList() {
         return ResponseEntity.ok(productServicePush.findAll());
     }
 
