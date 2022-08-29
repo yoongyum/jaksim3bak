@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     // 맞춤 상품 푸시
-    @PostMapping("/push")
+    @GetMapping("/customization")
     public ResponseEntity<List<ProductResponseDto>> getPushList() {
         return ResponseEntity.ok(productServicePush.findAll());
     }
