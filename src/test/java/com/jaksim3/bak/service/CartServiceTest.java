@@ -9,8 +9,6 @@ import com.jaksim3.bak.web.dto.CartRequestDto;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,12 +27,12 @@ class CartServiceTest {
     String email;
     Long productId;
 
-    @BeforeEach
+//    @BeforeEach
     void insertValue(){
         email = "hojun@naver.com";
         productId = 9L;
     }
-    @Test
+//    @Test
     void save(){
         ProductResponseDto productDto = cartService.save(CartRequestDto.builder()
                 .productId(this.productId)
@@ -43,7 +41,7 @@ class CartServiceTest {
         Assertions.assertThat(cartProduct.getProduct().getId()).isEqualTo(productId);
     }
     @Transactional
-    @Test
+//    @Test
     void deleteTest(){
         Member member = memberRepository.findByEmail(email).get();
         Long productId = cartService.delete(CartRequestDto.builder()
@@ -55,7 +53,7 @@ class CartServiceTest {
                         .product(productRepository.findById(productId).get()).build()
         );
     }
-    @Test
+//    @Test
     @Transactional
     void deleteAllTest(){
         cartService.deleteAll();

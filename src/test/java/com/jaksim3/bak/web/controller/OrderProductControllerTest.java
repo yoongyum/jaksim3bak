@@ -2,7 +2,6 @@ package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.web.dto.OrderProductRequestDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +15,7 @@ class OrderProductControllerTest {
 
     OrderProductRequestDto orderProductRequestDto;
 
-    @BeforeEach
+//    @BeforeEach
     void setUp() {
         orderProductRequestDto = OrderProductRequestDto.builder()
                 .email("yoongyum@test.com")
@@ -24,12 +23,12 @@ class OrderProductControllerTest {
                 .build();
     }
 
-    @Test
+//    @Test
     void test(){
         orderProductController.ordering(orderProductRequestDto);
     }
 
-    @Test
+//    @Test
     void deleteMember() {
         memberRepository.deleteAll();
     }
