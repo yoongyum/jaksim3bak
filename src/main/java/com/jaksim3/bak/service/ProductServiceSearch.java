@@ -28,19 +28,19 @@ public class ProductServiceSearch implements ProductService{
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
 
 
-        List<Product> asd = null;
+        List<Product> customization = null;
 
         if(requestDto.getType().equals("institution")){
-            asd = productRepository.findByAgeAndJobAndInstitutionContainingIgnoreCase(member.getAge(), member.getJob(), requestDto.getKeyword());
+            customization = productRepository.findByAgeAndJobAndInstitutionContainingIgnoreCase(member.getAge(), member.getJob(), requestDto.getKeyword());
         }
 
         if(requestDto.getType().equals("loan")){
-            asd = productRepository.findByAgeAndJobAndLoanIsLessThanEqual(member.getAge(), member.getJob(), Long.parseLong(requestDto.getKeyword()));
+            customization = productRepository.findByAgeAndJobAndLoanIsLessThanEqual(member.getAge(), member.getJob(), Long.parseLong(requestDto.getKeyword()));
         }
 
 
-        assert asd != null;
-        return asd.stream().map(ProductResponseDto::of).collect(Collectors.toList());
+        assert customization != null;
+        return customization.stream().map(ProductResponseDto::of).collect(Collectors.toList());
     }
 
 
