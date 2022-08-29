@@ -1,5 +1,6 @@
 package com.jaksim3.bak.web.controller;
 
+import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.web.dto.OrderProductRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,8 @@ class OrderProductControllerTest {
 
     @Autowired
     OrderProductController orderProductController;
+    @Autowired
+    MemberRepository memberRepository;
 
     OrderProductRequestDto orderProductRequestDto;
 
@@ -25,5 +28,10 @@ class OrderProductControllerTest {
     @Test
     void test(){
         orderProductController.ordering(orderProductRequestDto);
+    }
+
+    @Test
+    void deleteMember() {
+        memberRepository.deleteAll();
     }
 }
