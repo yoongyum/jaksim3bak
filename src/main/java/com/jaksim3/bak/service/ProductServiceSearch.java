@@ -31,9 +31,7 @@ public class ProductServiceSearch implements ProductService{
         List<Product> customization = null;
 
         if(requestDto.getType().equals("institution")){
-//            customization = productRepository.findByAgeAndJobAndInstitutionContainingIgnoreCase(member.getAge(), member.getJob(), requestDto.getKeyword());
-            customization = productRepository.findInstitution(member.getAge(), member.getJob(),member.getAvailableLoan(),requestDto.getKeyword());
-            System.out.println("hello "+ customization.size());
+            customization = productRepository.findInstitution(member.getAge(), member.getJob(),member.getAvailableLoan(),requestDto.getKeyword());System.out.println("hello "+ customization.size());
         }
 
         if(requestDto.getType().equals("loan")){
