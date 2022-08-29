@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ProductResponseDto {
+    private Long productId;
     private String institution;
     private String name;
     private Long loan;
@@ -20,6 +21,7 @@ public class ProductResponseDto {
 
     public static ProductResponseDto of(Product product) {
         return ProductResponseDto.builder()
+                .productId(product.getId())
                 .institution(product.getInstitution())
                 .name(product.getName())
                 .loan(product.getLoan())
