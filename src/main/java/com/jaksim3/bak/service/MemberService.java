@@ -1,7 +1,7 @@
 package com.jaksim3.bak.service;
 
 import com.jaksim3.bak.conifg.SecurityUtil;
-import com.jaksim3.bak.domain.MemberRepository;
+import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.web.dto.MemberResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
