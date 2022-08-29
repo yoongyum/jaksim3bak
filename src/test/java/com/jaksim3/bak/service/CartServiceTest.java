@@ -1,11 +1,9 @@
 package com.jaksim3.bak.service;
 
-import com.jaksim3.bak.domain.cart.Cart;
 import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.cart_product.CartProductRepository;
 import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
-import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
 import com.jaksim3.bak.web.dto.CartRequestDto;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
@@ -14,11 +12,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@SpringBootTest
+//@SpringBootTest
 class CartServiceTest {
     @Autowired
     private CartService cartService;
