@@ -1,5 +1,6 @@
 package com.jaksim3.bak.web.dto;
 
+import com.jaksim3.bak.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class ProductDto {
         private int age;
         private String job;
 
-        public static Response of(com.jaksim3.bak.domain.product.Product product) {
+        public static Response of(Product product) {
             return Response.builder()
                     .productId(product.getId())
                     .institution(product.getInstitution())
