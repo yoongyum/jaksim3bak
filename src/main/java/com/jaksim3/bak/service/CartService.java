@@ -8,7 +8,6 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.CartDto;
 import com.jaksim3.bak.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,14 +28,17 @@ public class CartService {
     private final CartProductRepository cartProductRepository;
 
     @Transactional
-    public ProductDto.Response save(CartDto.Request requestDto) {
+    public ProductDto.Response save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
-        Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
+        Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
 
         Cart cart = member.getCart();
-        CartProduct cartProduct = requestDto.toEntity(cart, product);
+        CartProduct cartProduct = CartProduct.builder()
+                        .cart(cart)
+                        .product(product)
+                        .build();
         cart.getCartProductList().forEach(cartPro -> {
             if (cartPro.getProduct().equals(product)) {
                 throw new RuntimeException("이미 장바구니에 등록된 상품입니다.");
@@ -50,8 +52,8 @@ public class CartService {
     }
 
     @Transactional
-    public Long delete(CartDto.Request requestDto) {
-        Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
+    public Long delete(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
         CartProduct cartProduct = cartProductRepository.findByProduct(product).orElseThrow(
                 () -> new IllegalArgumentException("해당 장바구니 상품이 없습니다"));
