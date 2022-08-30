@@ -13,20 +13,18 @@ spring:
 
   #JPA Setting
   jpa:
-    show-sql: true #if true, Show DB processing
+    show-sql: false #if true, Show DB processing
     hibernate:
-      ddl-auto: update  #DDL
+      ddl-auto: none  #DDL
     properties:
       hibernate:
         format_sql: false
         highlight_sql: true
-    defer-datasource-initialization: true
   sql:
     init:
       mode: always
-      continue-on-error: true # sql문 오류 무시하고 실행
-      schema-locations: classpath:data.sql
 logging:
   level:
     org.hibernate.SQL: trace
-    org.hibernate.type: off
+
+
