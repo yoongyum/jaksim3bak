@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    @ApiOperation(value = "회원 가입?" , notes = "")
+    @ApiOperation(value = "회원 가입" , notes = "")
     @PostMapping("/signup")
     public ResponseEntity<MemberDto.Response> signup(@RequestBody MemberDto.Request requestDto) {
         return ResponseEntity.ok(authService.signup(requestDto));

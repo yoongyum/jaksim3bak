@@ -49,7 +49,15 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**","/products").permitAll()
+                .antMatchers("/auth/**"
+                        , "/products"
+                        , "/v2/api-docs"
+                        , "/swagger-resources/**"
+                        , "/swagger-ui.html"
+                        , "/webjars/**"
+                        , "/swagger/**"
+                //        , "/favicon.ico"
+                ).permitAll()
                 .anyRequest().authenticated()
 
                 .and()
