@@ -1,7 +1,7 @@
 package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.domain.member.MemberRepository;
-import com.jaksim3.bak.web.dto.OrderProductRequestDto;
+import com.jaksim3.bak.web.dto.OrderDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,11 +13,11 @@ class OrderProductControllerTest {
     @Autowired
     MemberRepository memberRepository;
 
-    OrderProductRequestDto orderProductRequestDto;
+    OrderDto.Request orderProductRequestDto;
 
 //    @BeforeEach
     void setUp() {
-        orderProductRequestDto = OrderProductRequestDto.builder()
+        orderProductRequestDto = OrderDto.Request.builder()
                 .email("yoongyum@test.com")
                 .productId(2L)
                 .build();

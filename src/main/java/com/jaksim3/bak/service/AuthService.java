@@ -7,8 +7,9 @@ import com.jaksim3.bak.domain.interested.Interested;
 import com.jaksim3.bak.domain.interested.InterestedRepository;
 import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
-import com.jaksim3.bak.web.dto.MemberRequestDto;
-import com.jaksim3.bak.web.dto.MemberResponseDto;
+import com.jaksim3.bak.web.dto.MemberDto;
+
+
 import com.jaksim3.bak.web.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +31,7 @@ public class AuthService {
     private final TokenProvider tokenProvider;
 
     @Transactional
-    public MemberResponseDto signup(MemberRequestDto requestDto) {
+    public MemberDto.Response signup(MemberDto.Request requestDto) {
         if (memberRepository.existsByEmail(requestDto.getEmail())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
@@ -44,10 +45,10 @@ public class AuthService {
         member.setInterested(interested);
         interestedRepository.save(interested);
 
-        return MemberResponseDto.of(memberRepository.save(member));
+        return MemberDto.Response.of(memberRepository.save(member));
     }
 
-    public TokenDto login(MemberRequestDto requestDto) {
+    public TokenDto login(MemberDto.Request requestDto) {
         UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
 
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);

@@ -1,8 +1,7 @@
 package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.service.AuthService;
-import com.jaksim3.bak.web.dto.MemberRequestDto;
-import com.jaksim3.bak.web.dto.MemberResponseDto;
+import com.jaksim3.bak.web.dto.MemberDto;
 import com.jaksim3.bak.web.dto.TokenDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
+    @ApiOperation(value = "회원 가입?" , notes = "")
     @PostMapping("/signup")
-    public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<MemberDto.Response> signup(@RequestBody MemberDto.Request requestDto) {
         return ResponseEntity.ok(authService.signup(requestDto));
     }
 
@@ -31,7 +31,7 @@ public class AuthController {
             @ApiResponse(code = 500, message = "서버 에러"),
     })
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<TokenDto> login(@RequestBody MemberDto.Request requestDto) {
         return ResponseEntity.ok(authService.login(requestDto));
     }
 }
