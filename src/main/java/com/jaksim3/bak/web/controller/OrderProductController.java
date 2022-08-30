@@ -6,6 +6,7 @@ import com.jaksim3.bak.web.dto.OrderDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,8 @@ public class OrderProductController {
     private final OrderProductService orderProductService;
 
     @ApiOperation(value = "신청", notes = " ")
-    @PostMapping
-    public ResponseEntity<OrderDto.Response> ordering(OrderDto.Request requestDto){
-        return ResponseEntity.ok(orderProductService.ordering(requestDto));
+    @PostMapping("/{productId}")
+    public ResponseEntity<OrderDto.Response> ordering(@PathVariable Long productId){
+        return ResponseEntity.ok(orderProductService.ordering(productId));
     }
 }
