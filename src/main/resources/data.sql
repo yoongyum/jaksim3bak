@@ -18,9 +18,9 @@ insert into product (age, institution, job, loan, logo, name) values(50, '신한
 
 
 insert into product (age, institution, job, loan, logo, name) values(20, '국민은행', '학생', 3500000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 학생대출');
-insert into product (age, institution, job, loan, logo, name) values(20, '국민은행', '주부', 2000000, 'https://www.newsfc.co.kr/news/photo/202201/50116_42902_2542.png', 'KB 무직주부대출');
-insert into product (age, institution, job, loan, logo, name) values(30, '국민은행', '주부', 3200000, 'https://www.newsfc.co.kr/news/photo/202201/50116_42902_2542.png', 'KB 무직주부대출');
-insert into product (age, institution, job, loan, logo, name) values(40, '국민은행', '주부', 5200000, 'https://www.newsfc.co.kr/news/photo/202201/50116_42902_2542.png', 'KB 무직주부대출');
+insert into product (age, institution, job, loan, logo, name) values(20, '국민은행', '주부', 2000000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 무직주부대출');
+insert into product (age, institution, job, loan, logo, name) values(30, '국민은행', '주부', 3200000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 무직주부대출');
+insert into product (age, institution, job, loan, logo, name) values(40, '국민은행', '주부', 5200000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 무직주부대출');
 insert into product (age, institution, job, loan, logo, name) values(20, '국민은행', '공무원', 100000000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 공무원대출');
 insert into product (age, institution, job, loan, logo, name) values(30, '국민은행', '공무원', 110300000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 공무원대출');
 insert into product (age, institution, job, loan, logo, name) values(40, '국민은행', '공무원', 140100000, 'https://play-lh.googleusercontent.com/A1nnhoZES3ShWhct4Xwk_qwihyZPbljQCpAy4xrSum0t5ztCwfx7G-L4AoGcWUuWWqA9', 'KB 공무원대출');
