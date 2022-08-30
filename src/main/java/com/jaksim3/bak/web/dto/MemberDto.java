@@ -26,7 +26,7 @@ public class MemberDto {
         private String job;
 
         public Member toMember(PasswordEncoder passwordEncoder) {
-            return com.jaksim3.bak.domain.member.Member.builder()
+            return Member.builder()
                     .email(email)
                     .password(passwordEncoder.encode(password))
                     .username(username)
