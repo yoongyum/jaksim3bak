@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
-public class ProductServicePush implements ProductService{
+public class ProductServiceCustomization implements ProductService{
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
 
@@ -24,7 +24,7 @@ public class ProductServicePush implements ProductService{
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
 
-        return productRepository.findByAgeAndJob(member.getAge(), member.getJob())
+        return productRepository.findLoan(member.getAge(), member.getJob(), member.getAvailableLoan())
                 .stream()
                 .map(ProductResponseDto::of).collect(Collectors.toList());
     }

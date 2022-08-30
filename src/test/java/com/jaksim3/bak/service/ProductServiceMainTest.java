@@ -5,15 +5,12 @@ import com.jaksim3.bak.domain.product.ProductRepository;
 import com.jaksim3.bak.web.dto.ProductResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 @Slf4j
-@SpringBootTest
+//@SpringBootTest
 class ProductServiceMainTest {
 
     @Autowired
@@ -22,7 +19,7 @@ class ProductServiceMainTest {
     @Autowired
     private ProductServiceMain productServiceMain;
 
-    @BeforeEach
+//    @BeforeEach
     public void save(){
         productRepository.save(Product.builder()
                 .institution("신한은행")
@@ -34,7 +31,7 @@ class ProductServiceMainTest {
                 .build());
     }
 
-    @Test
+//    @Test
     void findAll() {
         List<ProductResponseDto> list = productServiceMain.findAll();
         ProductResponseDto productDto = list.get(0);

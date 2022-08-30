@@ -8,12 +8,12 @@ import java.util.Arrays;
 @Getter
 @RequiredArgsConstructor
 public enum Job {
-    STUDENT("학생", 3_000_000),
-    PUBLIC_OFFICIAL("공무원", 100_000_000),
-    DEVELOPER("직장인", 50_000_000),
-    BUSINESSMAN("자영업", 150_000_000),
+    STUDENT("학생", 5_000_000),
+    PUBLIC_OFFICIAL("공무원", 500_000_000),
+    DEVELOPER("직장인", 350_000_000),
+    BUSINESSMAN("자영업", 1_050_000_000),
     HOUSEWIFE("주부", 26_500_000),
-    UNEMPLOYED("무직", 10_000_000);
+    UNEMPLOYED("무직", 20_000_000);
 
     private final String label;
     private final int limit;
