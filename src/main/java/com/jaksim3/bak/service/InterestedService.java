@@ -8,7 +8,6 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.InterestedDto.Request;
 import com.jaksim3.bak.web.dto.ProductDto.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,15 +25,18 @@ public class InterestedService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public Response save(Request requestDto) {
+    public Response save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
-        Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
+        Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다."));
 
         Interested interested = member.getInterested();
-        InterestedProduct interestedProduct = requestDto.toInterestedProduct(interested, product);
+        InterestedProduct interestedProduct = InterestedProduct.builder()
+                .interested(interested)
+                .product(product)
+                .build();
 
         interested.getInterestedProductList().forEach(interestedPro -> {
             if (interestedPro.getProduct().equals(product)) {
@@ -60,15 +62,14 @@ public class InterestedService {
     }
 
     @Transactional
-    public void delete(Request requestDto) {
-        Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
+    public void delete(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다."));
 
         InterestedProduct interestedProduct = interestedProductRepository.findByProduct(product).orElseThrow(
                 () -> new IllegalArgumentException("해당 관심상품이 없습니다."));
 
         interestedProductRepository.delete(interestedProduct);
-
     }
 
     @Transactional
