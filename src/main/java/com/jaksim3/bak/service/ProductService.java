@@ -1,9 +1,9 @@
 package com.jaksim3.bak.service;
 
-import com.jaksim3.bak.web.dto.ProductResponseDto;
+import com.jaksim3.bak.web.dto.ProductDto;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductResponseDto> findAll();
+    List<ProductDto.Response> findAll();
 }

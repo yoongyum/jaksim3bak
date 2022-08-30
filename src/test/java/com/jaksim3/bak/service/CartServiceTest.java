@@ -5,8 +5,8 @@ import com.jaksim3.bak.domain.cart_product.CartProductRepository;
 import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.CartRequestDto;
-import com.jaksim3.bak.web.dto.ProductResponseDto;
+import com.jaksim3.bak.web.dto.CartDto;
+import com.jaksim3.bak.web.dto.ProductDto;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ class CartServiceTest {
     }
 //    @Test
     void save(){
-        ProductResponseDto productDto = cartService.save(CartRequestDto.builder()
+        ProductDto.Response productDto = cartService.save(CartDto.Request.builder()
                 .productId(this.productId)
                 .build());
         CartProduct cartProduct = cartProductRepository.findAll().get(0);
@@ -44,7 +44,7 @@ class CartServiceTest {
 //    @Test
     void deleteTest(){
         Member member = memberRepository.findByEmail(email).get();
-        Long productId = cartService.delete(CartRequestDto.builder()
+        Long productId = cartService.delete(CartDto.Request.builder()
                 .productId(this.productId)
                 .build());
         Assertions.assertThat(member.getCart().getCartProductList()).doesNotContain(

@@ -1,7 +1,7 @@
 package com.jaksim3.bak.service;
 
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.ProductResponseDto;
+import com.jaksim3.bak.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +17,10 @@ public class ProductServiceMain implements ProductService{
     private final ProductRepository productRepository;
 
     @Override
-    public List<ProductResponseDto> findAll() {
+    public List<ProductDto.Response> findAll() {
         return productRepository.findAll()
                         .stream()
-                        .map(ProductResponseDto::of).collect(Collectors.toList());
+                        .map(ProductDto.Response::of).collect(Collectors.toList());
     }
 
 }
