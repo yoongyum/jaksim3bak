@@ -116,7 +116,7 @@ insert into product (age, institution, job, loan, logo, name) values(60, '우리
 insert into product (age, institution, job, loan, logo, name) values(60, '우리은행', '직장인', 15000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리직장인대출');
 
 insert into product (age, institution, job, loan, logo, name) values(20, '우리은행', '자영업', 1050000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리자영업대출');
-insert into product (age, institution, job, loan, logo, name) values(20, '우리은행', '자영업', 300000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', 우리'자영업대출');
+insert into product (age, institution, job, loan, logo, name) values(20, '우리은행', '자영업', 300000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리자영업대출');
 insert into product (age, institution, job, loan, logo, name) values(30, '우리은행', '자영업', 700000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리자영업대출');
 insert into product (age, institution, job, loan, logo, name) values(30, '우리은행', '자영업', 1050000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리자영업대출');
 insert into product (age, institution, job, loan, logo, name) values(40, '우리은행', '자영업', 300000000, 'https://blog.kakaocdn.net/dn/dsPHon/btqK8jz21W3/hW0FxvPNKe1szKYP5TJTuk/img.png', '우리자영업대출');
