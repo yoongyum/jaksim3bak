@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9090
 spring:
   profiles:
     include: config
@@ -10,6 +10,7 @@ spring:
     cache: false
   thymeleaf:
     cache: false
+
   #JPA Setting
   jpa:
     show-sql: true #if true, Show DB processing
@@ -19,7 +20,11 @@ spring:
       hibernate:
         format_sql: false
         highlight_sql: true
+    defer-datasource-initialization: true
+sql:
+  init:
+    mode: always
 logging:
   level:
-    org.hibernate.SQL: off
+    org.hibernate.SQL: trace
     org.hibernate.type: off

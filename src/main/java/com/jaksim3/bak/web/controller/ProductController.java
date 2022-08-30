@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "금융상품 검색", notes = "기관명과 대출금을 키워드로 상품을 검색합니다.")
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<List<ProductDto.Response>> getSearchList(@RequestBody ProductDto.Request requestDto) {
         return ResponseEntity.ok(productServiceSearch.searchKeyword(requestDto));
     }
