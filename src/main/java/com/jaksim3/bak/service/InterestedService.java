@@ -8,8 +8,8 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.InterestedRequestDto;
-import com.jaksim3.bak.web.dto.ProductResponseDto;
+import com.jaksim3.bak.web.dto.InterestedDto.Request;
+import com.jaksim3.bak.web.dto.ProductDto.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +26,7 @@ public class InterestedService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public ProductResponseDto save(InterestedRequestDto requestDto) {
+    public Response save(Request requestDto) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
@@ -46,21 +46,21 @@ public class InterestedService {
         product.addInterestedProduct(interestedProduct);
         interestedProductRepository.save(interestedProduct);
 
-        return ProductResponseDto.of(product);
+        return Response.of(product);
     }
 
-    public List<ProductResponseDto> getProductList() {
+    public List<Response> getProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없다"));
 
         return interestedProductRepository.findAllByInterested(member.getInterested())
                 .stream()
-                .map(interestedProduct -> ProductResponseDto.of(interestedProduct.getProduct()))
+                .map(interestedProduct -> Response.of(interestedProduct.getProduct()))
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void delete(InterestedRequestDto requestDto) {
+    public void delete(Request requestDto) {
         Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다."));
 

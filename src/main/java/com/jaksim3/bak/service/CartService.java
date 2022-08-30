@@ -8,8 +8,8 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.CartRequestDto;
-import com.jaksim3.bak.web.dto.ProductResponseDto;
+import com.jaksim3.bak.web.dto.CartDto;
+import com.jaksim3.bak.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class CartService {
     private final CartProductRepository cartProductRepository;
 
     @Transactional
-    public ProductResponseDto save(CartRequestDto requestDto) {
+    public ProductDto.Response save(CartDto.Request requestDto) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
         Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
@@ -46,11 +46,11 @@ public class CartService {
         product.addCartProduct(cartProduct);
         cartProductRepository.save(cartProduct);
 
-        return ProductResponseDto.of(product);
+        return ProductDto.Response.of(product);
     }
 
     @Transactional
-    public Long delete(CartRequestDto requestDto) {
+    public Long delete(CartDto.Request requestDto) {
         Product product = productRepository.findById(requestDto.getProductId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
         CartProduct cartProduct = cartProductRepository.findByProduct(product).orElseThrow(
@@ -61,13 +61,13 @@ public class CartService {
         return cartProduct.getProduct().getId();
     }
 
-    public List<ProductResponseDto> getCartProductList() {
+    public List<ProductDto.Response> getCartProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
         return cartProductRepository.findAllByCart(member.getCart())
                 .stream()
-                .map(cartProduct -> ProductResponseDto.of(cartProduct.getProduct()))
+                .map(cartProduct -> ProductDto.Response.of(cartProduct.getProduct()))
                 .collect(Collectors.toList());
     }
 

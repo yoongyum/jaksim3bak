@@ -6,8 +6,8 @@ import com.jaksim3.bak.domain.order_product.OrderProduct;
 import com.jaksim3.bak.domain.order_product.OrderProductRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.OrderProductRequestDto;
-import com.jaksim3.bak.web.dto.OrderProductResponseDto;
+import com.jaksim3.bak.web.dto.OrderDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public class OrderProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public OrderProductResponseDto ordering(OrderProductRequestDto requestDto) {
+    public OrderDto.Response ordering(OrderDto.Request requestDto) {
         if (orderProductRepository.existsById(requestDto.getProductId())) {
             throw new RuntimeException("이미 신청한 주문입니다.");
         }
@@ -33,6 +33,6 @@ public class OrderProductService {
         OrderProduct orderProduct = requestDto.toOrderProduct(member, product);
         member.addOrderProduct(orderProduct);
         product.addOrderProduct(orderProduct);
-        return OrderProductResponseDto.of(orderProductRepository.save(orderProduct));
+        return OrderDto.Response.of(orderProductRepository.save(orderProduct));
     }
 }

@@ -5,8 +5,7 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.ProductResponseDto;
-import com.jaksim3.bak.web.dto.SearchRequestDto;
+import com.jaksim3.bak.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,7 @@ public class ProductServiceSearch implements ProductService{
     private final MemberRepository memberRepository;
 
 
-    public List<ProductResponseDto> searchKeyword(SearchRequestDto requestDto) {
+    public List<ProductDto.Response> searchKeyword(ProductDto.Request requestDto) {
 
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
@@ -40,12 +39,12 @@ public class ProductServiceSearch implements ProductService{
 
 
         assert customization != null;
-        return customization.stream().map(ProductResponseDto::of).collect(Collectors.toList());
+        return customization.stream().map(ProductDto.Response::of).collect(Collectors.toList());
     }
 
 
     @Override
-    public List<ProductResponseDto> findAll() {
+    public List<ProductDto.Response> findAll() {
         return null;
     }
 }
