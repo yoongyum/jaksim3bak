@@ -2,19 +2,21 @@ package com.jaksim3.bak.domain.cart;
 
 import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.member.Member;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.*;
-import static javax.persistence.GenerationType.*;
-import static lombok.AccessLevel.*;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
-@NoArgsConstructor(access = PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Table(name = "CART")
