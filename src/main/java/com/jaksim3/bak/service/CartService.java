@@ -39,7 +39,7 @@ public class CartService {
                         .cart(cart)
                         .product(product)
                         .build();
-        cart.getCartProductList().forEach(cartPro -> {
+        cart.getCartProducts().forEach(cartPro -> {
             if (cartPro.getProduct().equals(product)) {
                 throw new RuntimeException("이미 장바구니에 등록된 상품입니다.");
             }
@@ -78,6 +78,6 @@ public class CartService {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다."));
 
-        cartProductRepository.deleteAllInBatch((member.getCart().getCartProductList()));
+        cartProductRepository.deleteAllInBatch((member.getCart().getCartProducts()));
     }
 }

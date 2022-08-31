@@ -1,28 +1,25 @@
 package com.jaksim3.bak.domain.product;
 
-import com.jaksim3.bak.domain.enums.Job;
+import com.jaksim3.bak.domain.cart_product.CartProduct;
 import com.jaksim3.bak.domain.interested_product.InterestedProduct;
 import com.jaksim3.bak.domain.order_product.OrderProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import com.jaksim3.bak.domain.cart_product.CartProduct;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
-@NoArgsConstructor(access = PROTECTED)
 @Getter
-@Entity
+@NoArgsConstructor(access = PROTECTED)
 @Table(name = "PRODUCT")
+@Entity
 public class Product {
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "product_id")

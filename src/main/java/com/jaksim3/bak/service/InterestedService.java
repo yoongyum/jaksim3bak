@@ -38,7 +38,7 @@ public class InterestedService {
                 .product(product)
                 .build();
 
-        interested.getInterestedProductList().forEach(interestedPro -> {
+        interested.getInterestedProducts().forEach(interestedPro -> {
             if (interestedPro.getProduct().equals(product)) {
                 throw new RuntimeException("이미 관심에 등록된 상품입니다.");
             }
@@ -77,7 +77,7 @@ public class InterestedService {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없다"));
 
-        interestedProductRepository.deleteAllInBatch(member.getInterested().getInterestedProductList());
+        interestedProductRepository.deleteAllInBatch(member.getInterested().getInterestedProducts());
     }
 
 }

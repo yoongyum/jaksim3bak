@@ -9,21 +9,24 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 @Table(name = "CART_PRODUCT")
 @Entity
 public class CartProduct extends BaseTimeEntity {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -35,10 +38,10 @@ public class CartProduct extends BaseTimeEntity {
 
     public void setCart(Cart cart) {
         if(this.cart != null){
-            this.cart.getCartProductList().remove(this);
+            this.cart.getCartProducts().remove(this);
         }
         this.cart = cart;
-        if(!this.cart.getCartProductList().contains(this)){
+        if(!this.cart.getCartProducts().contains(this)){
             this.cart.addCartProduct(this);
         }
     }
