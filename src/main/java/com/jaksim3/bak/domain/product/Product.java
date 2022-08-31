@@ -26,10 +26,10 @@ public class Product {
     private Long id;
 
     @OneToMany(mappedBy = "product", cascade = ALL)
-    private List<CartProduct> cartProductList = new ArrayList<>();
+    private List<CartProduct> cartProducts = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = ALL)
-    private List<InterestedProduct> interestedProductList = new ArrayList<>();
+    private List<InterestedProduct> interestedProducts = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
@@ -64,14 +64,14 @@ public class Product {
     }
 
     public void addCartProduct(CartProduct cartProduct) {
-        this.cartProductList.add(cartProduct);
+        this.cartProducts.add(cartProduct);
         if(cartProduct.getProduct() != this) {
             cartProduct.setProduct(this);
         }
     }
 
     public void addInterestedProduct(InterestedProduct interestedProduct) {
-        this.interestedProductList.add(interestedProduct);
+        this.interestedProducts.add(interestedProduct);
         if(interestedProduct.getProduct() != this){
             interestedProduct.setProduct(this);
         }

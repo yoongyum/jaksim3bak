@@ -48,10 +48,10 @@ public class InterestedProduct extends BaseTimeEntity {
 
     public void setProduct(Product product) {
         if(this.product != null){
-            this.product.getInterestedProductList().remove(this);
+            this.product.getInterestedProducts().remove(this);
         }
         this.product = product;
-        if(!this.product.getInterestedProductList().contains(this)){
+        if(!this.product.getInterestedProducts().contains(this)){
             this.product.addInterestedProduct(this);
         }
     }
