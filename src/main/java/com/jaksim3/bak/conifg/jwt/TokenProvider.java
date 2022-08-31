@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider {
 
-    static long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 10; // 10분
+    static long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30; // 30분
     static long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7; // 7일
 
     private static final String AUTHORITIES_KEY = "auth";
