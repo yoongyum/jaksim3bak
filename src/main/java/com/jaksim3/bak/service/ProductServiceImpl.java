@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
 
-
     // 전체 금융 상품 목록
     @Override
     public List<ProductDto.Response> findAll() {
@@ -42,10 +41,8 @@ public class ProductServiceImpl implements ProductService {
 
     // 키워드로 검색
     public List<ProductDto.Response> searchKeyword(ProductDto.Request requestDto) {
-
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
-
 
         List<Product> customization = null;
 
@@ -57,7 +54,6 @@ public class ProductServiceImpl implements ProductService {
         if (requestDto.getType().equals("loan")) {
             customization = productRepository.findLoan(member.getAge(), member.getJob(), Long.parseLong(requestDto.getKeyword()));
         }
-
 
         assert customization != null;
         return customization.stream().map(ProductDto.Response::of).collect(Collectors.toList());
