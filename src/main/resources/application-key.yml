@@ -2,7 +2,7 @@ spring:
   #DB Setting
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://www.jaksim3.com:3306/jaksim3?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://3.39.198.62:3306/jaksim3?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
 jwt:
