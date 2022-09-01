@@ -25,6 +25,17 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+
+    - name: set MySQL
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: src/main/resources/application-key.yaml
+      env:
+        spring.datasource.url: ${{ secrets.MYSQL_HOST }}
+        spring.datasource.username: ${{ secrets.MYSQL_USERNAME }}
+        spring.datasource.password: ${{ secrets.MYSQL_PASSWORD }}
+        jwt.secret: ${{ secrets.JWT_SECRET }}
+
     - name: Change gradlew permissions
       run: chmod +x ./gradlew
 
