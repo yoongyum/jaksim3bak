@@ -11,15 +11,6 @@ spring:
   thymeleaf:
     cache: false
 
-  #JPA Setting
-  jpa:
-    show-sql: false #if true, Show DB processing
-    hibernate:
-      ddl-auto: none  #DDL
-    properties:
-      hibernate:
-        format_sql: false
-        highlight_sql: true
   sql:
     init:
       mode: always

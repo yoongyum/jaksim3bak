@@ -5,5 +5,17 @@ spring:
     url: jdbc:mysql://3.39.198.62:3306/jaksim3?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
+
+  #JPA Setting
+  jpa:
+    show-sql: false #if true, Show DB processing
+    hibernate:
+      ddl-auto: none  #DDL
+    properties:
+      hibernate:
+        format_sql: false
+        highlight_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
 jwt:
   secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
