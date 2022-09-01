@@ -48,3 +48,16 @@ jobs:
         docker build -t spring-cicd .
         docker tag spring-cicd yoongyum/spring-cicd:${GITHUB_SHA::7}
         docker push yoongyum/spring-cicd:${GITHUB_SHA::7}
+
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ec2-3-39-198-62.ap-northeast-2.compute.amazonaws.com
+        username: ubuntu
+        key: ${{ secrets.PRIVATE_KEY }}
+        envs: GITHUB_SHA
+        script: |
+          docker pull yoongyum/spring-cicd:${GITHUB_SHA::7}
+          docker tag yoongyum/spring-cicd:${GITHUB_SHA::7} spring-cicd
+          docker stop server
+          docker container run --network employee-mysql -d --rm --name server -p 80:8080 spring-cicd
