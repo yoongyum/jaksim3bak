@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    include: config
+    include: key
   devtools:
     livereload:
       enabled: true
