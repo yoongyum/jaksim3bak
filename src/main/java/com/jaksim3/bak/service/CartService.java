@@ -57,7 +57,7 @@ public class CartService {
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
         Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
-        CartProduct cartProduct = cartProductRepository.findByProduct(product).orElseThrow(
+        CartProduct cartProduct = cartProductRepository.findByProductAndCart(product,member.getCart()).orElseThrow(
                 () -> new IllegalArgumentException("해당 장바구니 상품이 없습니다"));
 
         if(member.getCart().getCartProducts().contains(cartProduct)) {
