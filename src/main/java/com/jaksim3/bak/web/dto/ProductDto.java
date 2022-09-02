@@ -11,7 +11,7 @@ public class ProductDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Response {
+    public static class ProductResponse {
 
         private Long productId;
         private String institution;
@@ -21,8 +21,8 @@ public class ProductDto {
         private int age;
         private String job;
 
-        public static Response of(Product product) {
-            return Response.builder()
+        public static ProductResponse of(Product product) {
+            return ProductResponse.builder()
                     .productId(product.getId())
                     .institution(product.getInstitution())
                     .name(product.getName())
@@ -35,7 +35,7 @@ public class ProductDto {
     }
 
     @Getter
-    public static class Request {
+    public static class SearchRequest {
         private String type;
         private String keyword;
     }

@@ -28,7 +28,7 @@ public class CartService {
     private final CartProductRepository cartProductRepository;
 
     @Transactional
-    public ProductDto.Response save(Long productId) {
+    public ProductDto.ProductResponse save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
         Product product = productRepository.findById(productId).orElseThrow(
@@ -48,7 +48,7 @@ public class CartService {
         product.addCartProduct(cartProduct);
         cartProductRepository.save(cartProduct);
 
-        return ProductDto.Response.of(product);
+        return ProductDto.ProductResponse.of(product);
     }
 
     @Transactional
@@ -63,13 +63,13 @@ public class CartService {
         return cartProduct.getProduct().getId();
     }
 
-    public List<ProductDto.Response> getCartProductList() {
+    public List<ProductDto.ProductResponse> getCartProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
         return cartProductRepository.findAllByCart(member.getCart())
                 .stream()
-                .map(cartProduct -> ProductDto.Response.of(cartProduct.getProduct()))
+                .map(cartProduct -> ProductDto.ProductResponse.of(cartProduct.getProduct()))
                 .collect(Collectors.toList());
     }
 

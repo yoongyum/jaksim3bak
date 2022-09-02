@@ -21,7 +21,7 @@ public class OrderProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public OrderDto.Response ordering(Long productId) {
+    public OrderDto.OrderResponse ordering(Long productId) {
         if (orderProductRepository.existsById(productId)) {
             throw new RuntimeException("이미 신청한 주문입니다.");
         }
@@ -36,6 +36,6 @@ public class OrderProductService {
                 .build();
         member.addOrderProduct(orderProduct);
         product.addOrderProduct(orderProduct);
-        return OrderDto.Response.of(orderProductRepository.save(orderProduct));
+        return OrderDto.OrderResponse.of(orderProductRepository.save(orderProduct));
     }
 }

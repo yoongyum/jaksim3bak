@@ -22,25 +22,25 @@ public class ProductServiceImpl implements ProductService {
 
     // 전체 금융 상품 목록
     @Override
-    public List<ProductDto.Response> findAll() {
+    public List<ProductDto.ProductResponse> findAll() {
         return productRepository.findAll()
                 .stream()
-                .map(ProductDto.Response::of).collect(Collectors.toList());
+                .map(ProductDto.ProductResponse::of).collect(Collectors.toList());
     }
 
     // 맞춤 상품 목록
     @Override
-    public List<ProductDto.Response> findCustom() {
+    public List<ProductDto.ProductResponse> findCustom() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
 
         return productRepository.findLoan(member.getAge(), member.getJob(), member.getAvailableLoan())
                 .stream()
-                .map(ProductDto.Response::of).collect(Collectors.toList());
+                .map(ProductDto.ProductResponse::of).collect(Collectors.toList());
     }
 
     // 키워드로 검색
-    public List<ProductDto.Response> searchKeyword(ProductDto.Request requestDto) {
+    public List<ProductDto.ProductResponse> searchKeyword(ProductDto.SearchRequest requestDto) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));
 
@@ -56,6 +56,6 @@ public class ProductServiceImpl implements ProductService {
         }
 
         assert customization != null;
-        return customization.stream().map(ProductDto.Response::of).collect(Collectors.toList());
+        return customization.stream().map(ProductDto.ProductResponse::of).collect(Collectors.toList());
     }
 }

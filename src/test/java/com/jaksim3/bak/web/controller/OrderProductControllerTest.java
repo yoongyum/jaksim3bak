@@ -12,11 +12,11 @@ class OrderProductControllerTest {
     @Autowired
     MemberRepository memberRepository;
 
-    OrderDto.Request orderProductRequestDto;
+    OrderDto.OrderRequest orderProductOrderRequestDto;
 
 //    @BeforeEach
     void setUp() {
-        orderProductRequestDto = OrderDto.Request.builder()
+        orderProductOrderRequestDto = OrderDto.OrderRequest.builder()
                 .email("yoongyum@test.com")
                 .productId(2L)
                 .build();

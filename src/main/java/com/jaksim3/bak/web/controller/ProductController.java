@@ -3,7 +3,10 @@ package com.jaksim3.bak.web.controller;
 import com.jaksim3.bak.service.ProductServiceImpl;
 import com.jaksim3.bak.web.dto.ProductDto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@ApiOperation(value = "금융상품", notes = " ")
 @RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
@@ -19,22 +21,38 @@ public class ProductController {
     private final ProductServiceImpl productServiceImpl;
 
 
-    @ApiOperation(value = "금융상품 전체 목록", notes = "비 로그인시 모든 상품을 보여 줍니다.")
-    // 전체 상품 목록
+    @ApiOperation(value = "금융상품 전체 목록")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 500, message = "서버에러")
+    })
     @GetMapping
-    public ResponseEntity<List<ProductDto.Response>> getProductList() {
+    public ResponseEntity<List<ProductDto.ProductResponse>> getProductList() {
         return ResponseEntity.ok(productServiceImpl.findAll());
     }
 
-    @ApiOperation(value = "맞춤 금융상품 목록", notes = "로그인시 회원의 나이, 직업에 맞는 금융상품을 보여 줍니다.")
+    @ApiOperation(value = "맞춤 금융상품 목록")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 401, message = "로그인이 필요합니다"),
+            @ApiResponse(code = 500, message = "서버에러")
+    })
     @GetMapping("/customization")
-    public ResponseEntity<List<ProductDto.Response>> getCustomizationList() {
+    public ResponseEntity<List<ProductDto.ProductResponse>> getCustomizationList() {
         return ResponseEntity.ok(productServiceImpl.findCustom());
     }
 
-    @ApiOperation(value = "금융상품 검색", notes = "기관명과 대출금을 키워드로 상품을 검색합니다.")
+
+    @ApiOperation(value = "금융상품 검색")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 401, message = "로그인이 필요합니다"),
+            @ApiResponse(code = 500, message = "서버에러")
+    })
     @PostMapping("/search")
-    public ResponseEntity<List<ProductDto.Response>> getSearchList(@RequestBody ProductDto.Request requestDto) {
+    public ResponseEntity<List<ProductDto.ProductResponse>> getSearchList(@RequestBody ProductDto.SearchRequest requestDto) {
         return ResponseEntity.ok(productServiceImpl.searchKeyword(requestDto));
     }
+
+
 }
