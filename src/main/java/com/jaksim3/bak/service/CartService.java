@@ -53,13 +53,16 @@ public class CartService {
 
     @Transactional
     public Long delete(Long productId) {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
+                () -> new IllegalArgumentException("해당 회원이 없습니다"));
         Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
         CartProduct cartProduct = cartProductRepository.findByProduct(product).orElseThrow(
                 () -> new IllegalArgumentException("해당 장바구니 상품이 없습니다"));
 
-        cartProductRepository.delete(cartProduct);
-
+        if(member.getCart().getCartProducts().contains(cartProduct)) {
+            cartProductRepository.delete(cartProduct);
+        }
         return cartProduct.getProduct().getId();
     }
 
