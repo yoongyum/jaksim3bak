@@ -39,10 +39,6 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberDto.MemberRequest requestDto) {
-        TokenDto login = authService.login(requestDto);
-        log.info("token: {}",login.getAccessToken());
-        log.info("grantType: {}",login.getGrantType());
-        log.info("만료일: {}",login.getTokenExpiresIn());
-        return ResponseEntity.ok(login);
+        return ResponseEntity.ok(authService.login(requestDto));
     }
 }
