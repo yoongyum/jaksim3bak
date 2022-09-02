@@ -2,7 +2,6 @@ package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.service.CartService;
 import com.jaksim3.bak.web.dto.ProductDto;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -49,6 +48,7 @@ public class CartController {
     })
     @DeleteMapping("/{productId}")
     public void delete(@PathVariable("productId") Long productId){
+        log.info("상품 번호 : {}", productId);
         cartService.delete(productId);
     }
 

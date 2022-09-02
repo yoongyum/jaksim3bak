@@ -12,6 +12,7 @@ import com.jaksim3.bak.web.dto.MemberDto;
 
 import com.jaksim3.bak.web.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -49,6 +51,8 @@ public class AuthService {
     }
 
     public TokenDto login(MemberDto.MemberRequest signUpRequestDto) {
+        log.info("이메일 : {}", signUpRequestDto.getEmail());
+
         UsernamePasswordAuthenticationToken authenticationToken = signUpRequestDto.toAuthentication();
 
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);

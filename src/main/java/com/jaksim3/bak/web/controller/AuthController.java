@@ -3,18 +3,18 @@ package com.jaksim3.bak.web.controller;
 import com.jaksim3.bak.service.AuthService;
 import com.jaksim3.bak.web.dto.MemberDto;
 import com.jaksim3.bak.web.dto.TokenDto;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 @RestController
@@ -39,6 +39,10 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberDto.MemberRequest requestDto) {
-        return ResponseEntity.ok(authService.login(requestDto));
+        TokenDto login = authService.login(requestDto);
+        log.info("token: {}",login.getAccessToken());
+        log.info("grantType: {}",login.getGrantType());
+        log.info("만료일: {}",login.getTokenExpiresIn());
+        return ResponseEntity.ok(login);
     }
 }
