@@ -16,9 +16,6 @@ spring:
         format_sql: false
         highlight_sql: true
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-  #Swagger Setting
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+
 jwt:
   secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
