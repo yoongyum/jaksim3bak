@@ -18,7 +18,7 @@ public class MemberDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Request {
+    public static class MemberRequest {
         private String email;
         private String password;
         private String username;
@@ -45,20 +45,20 @@ public class MemberDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Response {
+    public static class MemberResponse {
         private String email;
         private String username;
         private int age;
         private String job;
         private Long availableLoan;
-        private List<OrderDto.Response> orderProducts;
+        private List<OrderDto.OrderResponse> orderProducts;
 
-        public static Response of(Member member) {
-            List<OrderDto.Response> orderProducts = member.getOrderProducts().stream()
-                    .map(OrderDto.Response::of)
+        public static MemberResponse of(Member member) {
+            List<OrderDto.OrderResponse> orderProducts = member.getOrderProducts().stream()
+                    .map(OrderDto.OrderResponse::of)
                     .collect(Collectors.toList());
 
-            return Response.builder()
+            return MemberResponse.builder()
                     .email(member.getEmail())
                     .username(member.getUsername())
                     .age(member.getAge())

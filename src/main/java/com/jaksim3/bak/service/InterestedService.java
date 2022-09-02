@@ -8,7 +8,7 @@ import com.jaksim3.bak.domain.member.Member;
 import com.jaksim3.bak.domain.member.MemberRepository;
 import com.jaksim3.bak.domain.product.Product;
 import com.jaksim3.bak.domain.product.ProductRepository;
-import com.jaksim3.bak.web.dto.ProductDto.Response;
+import com.jaksim3.bak.web.dto.ProductDto.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class InterestedService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public Response save(Long productId) {
+    public ProductResponse save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
 
@@ -48,16 +48,16 @@ public class InterestedService {
         product.addInterestedProduct(interestedProduct);
         interestedProductRepository.save(interestedProduct);
 
-        return Response.of(product);
+        return ProductResponse.of(product);
     }
 
-    public List<Response> getProductList() {
+    public List<ProductResponse> getProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없다"));
 
         return interestedProductRepository.findAllByInterested(member.getInterested())
                 .stream()
-                .map(interestedProduct -> Response.of(interestedProduct.getProduct()))
+                .map(interestedProduct -> ProductResponse.of(interestedProduct.getProduct()))
                 .collect(Collectors.toList());
     }
 

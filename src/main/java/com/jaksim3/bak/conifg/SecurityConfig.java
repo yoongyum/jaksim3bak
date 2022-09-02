@@ -49,7 +49,7 @@ public class SecurityConfig {
                         , "/products"
                         , "/v2/api-docs"
                         , "/swagger-resources/**"
-                        , "/swagger-ui.html"
+                        , "/swagger-ui.html" //"/swagger-ui/index.html"
                         , "/webjars/**"
                         , "/swagger/**"
                 ).permitAll()

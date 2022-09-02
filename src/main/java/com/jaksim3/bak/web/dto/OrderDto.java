@@ -15,7 +15,7 @@ public class OrderDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Request {
+    public static class OrderRequest {
         private String email;
         private Long productId;
 
@@ -31,13 +31,13 @@ public class OrderDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Response {
-        private ProductDto.Response product;
+    public static class OrderResponse {
+        private ProductDto.ProductResponse product;
         private LocalDateTime createdDate;
 
-        public static Response of(OrderProduct order) {
-            return Response.builder()
-                    .product(ProductDto.Response.of(order.getProduct()))
+        public static OrderResponse of(OrderProduct order) {
+            return OrderResponse.builder()
+                    .product(ProductDto.ProductResponse.of(order.getProduct()))
                     .createdDate(order.getCreatedDate())
                     .build();
         }

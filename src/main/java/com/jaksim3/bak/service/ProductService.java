@@ -5,9 +5,9 @@ import com.jaksim3.bak.web.dto.ProductDto;
 import java.util.List;
 
 public interface ProductService {
-    List<ProductDto.Response> findAll();
+    List<ProductDto.ProductResponse> findAll();
 
-    List<ProductDto.Response> findCustom();
+    List<ProductDto.ProductResponse> findCustom();
 
-    List<ProductDto.Response> searchKeyword(ProductDto.Request requestDto);
+    List<ProductDto.ProductResponse> searchKeyword(ProductDto.SearchRequest requestDto);
 }

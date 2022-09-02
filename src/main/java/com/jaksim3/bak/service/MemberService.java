@@ -14,9 +14,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public MemberDto.Response getMyInfoBySecurity() {
+    public MemberDto.MemberResponse getMyInfoBySecurity() {
         return memberRepository.findById(SecurityUtil.getCurrentMemberId())
-                .map(MemberDto.Response::of)
+                .map(MemberDto.MemberResponse::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
     }
 }

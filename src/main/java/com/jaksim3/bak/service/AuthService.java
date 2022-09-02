@@ -31,11 +31,11 @@ public class AuthService {
     private final TokenProvider tokenProvider;
 
     @Transactional
-    public MemberDto.Response signup(MemberDto.Request requestDto) {
-        if (memberRepository.existsByEmail(requestDto.getEmail())) {
+    public MemberDto.MemberResponse signup(MemberDto.MemberRequest signUpRequestDto) {
+        if (memberRepository.existsByEmail(signUpRequestDto.getEmail())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
-        Member member = requestDto.toMember(passwordEncoder);
+        Member member = signUpRequestDto.toMember(passwordEncoder);
 
         Cart cart = new Cart();
         member.setCart(cart);
@@ -45,11 +45,11 @@ public class AuthService {
         member.setInterested(interested);
         interestedRepository.save(interested);
 
-        return MemberDto.Response.of(memberRepository.save(member));
+        return MemberDto.MemberResponse.of(memberRepository.save(member));
     }
 
-    public TokenDto login(MemberDto.Request requestDto) {
-        UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
+    public TokenDto login(MemberDto.MemberRequest signUpRequestDto) {
+        UsernamePasswordAuthenticationToken authenticationToken = signUpRequestDto.toAuthentication();
 
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
 
