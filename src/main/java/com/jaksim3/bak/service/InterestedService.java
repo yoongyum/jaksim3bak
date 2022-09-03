@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Service
 public class InterestedService {
     private final InterestedProductRepository interestedProductRepository;
