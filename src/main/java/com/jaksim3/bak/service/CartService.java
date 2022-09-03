@@ -59,6 +59,7 @@ public class CartService {
         cartProductRepository.delete(cartProduct);
     }
 
+    @Transactional(readOnly = true)
     public List<ProductDto.ProductResponse> getCartProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없습니다"));
