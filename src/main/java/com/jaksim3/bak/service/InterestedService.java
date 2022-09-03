@@ -50,6 +50,7 @@ public class InterestedService {
         return ProductResponse.of(product);
     }
 
+    @Transactional(readOnly = true)
     public List<ProductResponse> getProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없다"));
