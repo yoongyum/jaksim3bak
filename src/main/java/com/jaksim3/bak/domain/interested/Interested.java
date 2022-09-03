@@ -2,8 +2,7 @@ package com.jaksim3.bak.domain.interested;
 
 import com.jaksim3.bak.domain.interested_product.InterestedProduct;
 import com.jaksim3.bak.domain.member.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,9 +10,12 @@ import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
+@Builder
 @Table(name = "INTERESTED")
 @Entity
 public class Interested {

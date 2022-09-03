@@ -82,11 +82,9 @@ public class Member extends BaseTimeEntity {
 
     public void setCart(Cart cart) {
         this.cart = cart;
-        cart.setMember(this);
     }
     public void setInterested(Interested interested) {
         this.interested = interested;
-        interested.setMember(this);
     }
 
     public Long getAvailableLoan() {

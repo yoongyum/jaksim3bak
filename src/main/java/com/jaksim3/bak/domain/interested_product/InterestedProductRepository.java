@@ -11,5 +11,5 @@ public interface InterestedProductRepository extends JpaRepository<InterestedPro
 
     List<InterestedProduct> findAllByInterested(Interested interested);
 
-    Optional<InterestedProduct> findByProduct(Product product);
+    Optional<InterestedProduct> findByProductAndInterested(Product product, Interested interested);
 }

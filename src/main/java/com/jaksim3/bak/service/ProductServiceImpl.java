@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
 
     // 전체 금융 상품 목록
+    @Transactional(readOnly = true)
     @Override
     public List<ProductDto.ProductResponse> findAll() {
         return productRepository.findAll()
@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     // 맞춤 상품 목록
+    @Transactional(readOnly = true)
     @Override
     public List<ProductDto.ProductResponse> findCustom() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -40,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     // 키워드로 검색
+    @Transactional(readOnly = true)
     public List<ProductDto.ProductResponse> searchKeyword(ProductDto.SearchRequest requestDto) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new RuntimeException("해당 이메일을 가진 회원을 찾을 수 없습니다."));

@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Service
 public class InterestedService {
     private final InterestedProductRepository interestedProductRepository;
@@ -51,6 +50,7 @@ public class InterestedService {
         return ProductResponse.of(product);
     }
 
+    @Transactional(readOnly = true)
     public List<ProductResponse> getProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 회원이 없다"));
@@ -63,12 +63,14 @@ public class InterestedService {
 
     @Transactional
     public void delete(Long productId) {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
+                () -> new IllegalArgumentException("해당 회원이 없습니다"));
+
         Product product = productRepository.findById(productId).orElseThrow(
                 () -> new IllegalArgumentException("해당 상품이 없습니다."));
 
-        InterestedProduct interestedProduct = interestedProductRepository.findByProduct(product).orElseThrow(
+        InterestedProduct interestedProduct = interestedProductRepository.findByProductAndInterested(product, member.getInterested()).orElseThrow(
                 () -> new IllegalArgumentException("해당 관심상품이 없습니다."));
-
         interestedProductRepository.delete(interestedProduct);
     }
 
