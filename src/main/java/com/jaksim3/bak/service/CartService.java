@@ -59,11 +59,7 @@ public class CartService {
                 () -> new IllegalArgumentException("해당 상품이 없습니다"));
         CartProduct cartProduct = cartProductRepository.findByProductAndCart(product,member.getCart()).orElseThrow(
                 () -> new IllegalArgumentException("해당 장바구니 상품이 없습니다"));
-        log.info("멤버: {}", member);
-        log.info("멤버: {}", member.getCart().getId());
-        log.info("삭제 성공 ! - cartProduct: {}", cartProduct.getId());
         cartProductRepository.delete(cartProduct);
-
     }
 
     public List<ProductDto.ProductResponse> getCartProductList() {
