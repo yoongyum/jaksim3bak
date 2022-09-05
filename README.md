@@ -221,3 +221,16 @@ create table interested_product
 https://vermillion-shortbread-f46c4f.netlify.app/
 
 ![img_1.png](img/img_1.png)![img_2.png](img/img_2.png)![img_3.png](img/img_3.png)
+
+
+### 역할
+
+- 👑**김윤겸**
+  - Spring Security
+  - 주문 신청 로직
+    - 주문 신청 시 신청가능 대출금 합 계산
+  - 서버 배포 
+  - CI/CD
+- **김현준**
+- **장호준**
+- **김성준**
