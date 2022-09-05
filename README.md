@@ -1,5 +1,7 @@
 # 💎 금융상품 쇼핑몰 만들기
 
+https://mango-tower-9f1.notion.site/7670e6d5a49d489f806ea2fb271d4fcb
+
 1. [Development](#development)
 2. [Deployment](#deployment )
 3. [Dependency](#dependency )
@@ -11,9 +13,11 @@
 
 ## 👦 Back-End Team
 
-팀장: **김윤겸(_yoongyum_)**
+>팀장: **김윤겸(_yoongyum_)**
 
-팀원: **김현준(khjun723), 장호준(ho-jun97), 김성준(Meringue-KIm)**
+>팀원: **김현준(khjun723), 장호준(ho-jun97), 김성준(Meringue-KIm)**
+
+>프론트 팀 Repo: https://github.com/davidktlee/FC-ToyProject-Team3
 
 <br>
 
