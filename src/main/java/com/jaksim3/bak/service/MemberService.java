@@ -14,6 +14,11 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * 현재 로그인한 회원 정보 꺼내오기
+     * @return 회원정보
+     * @implNote 토큰 값을 통해서, Member Entity를 가져온다.
+     */
     @Transactional(readOnly = true)
     public MemberDto.MemberResponse getMyInfoBySecurity() {
         return memberRepository.findById(SecurityUtil.getCurrentMemberId())

@@ -24,6 +24,11 @@ public class CartService {
     private final ProductRepository productRepository;
     private final CartProductRepository cartProductRepository;
 
+    /**
+     * 카트에 상품 저장
+     * @param productId 저장할 상품 고유 id
+     * @return 저장된 상품 정보
+     */
     @Transactional
     public ProductDto.ProductResponse save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -48,6 +53,10 @@ public class CartService {
         return ProductDto.ProductResponse.of(product);
     }
 
+    /**
+     * 카트에 담긴 특정 상품 삭제
+     * @param productId 삭제할 상품 고유 id
+     */
     @Transactional
     public void delete(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -59,6 +68,10 @@ public class CartService {
         cartProductRepository.delete(cartProduct);
     }
 
+    /**
+     * 카트에 담긴 상품 목록 조회
+     * @return 카트에 담겨준 상품 목록
+     */
     @Transactional(readOnly = true)
     public List<ProductDto.ProductResponse> getCartProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -70,6 +83,9 @@ public class CartService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 카트에 담긴 상품들 전체삭제
+     */
     @Transactional
     public void deleteAll() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(

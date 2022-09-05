@@ -221,3 +221,19 @@ create table interested_product
 https://vermillion-shortbread-f46c4f.netlify.app/
 
 ![img_1.png](img/img_1.png)![img_2.png](img/img_2.png)![img_3.png](img/img_3.png)
+
+
+### 역할
+
+- 👑**김윤겸**
+  - Spring Security
+  - 주문 신청 로직
+  - 서버 배포 
+  - CI/CD
+- 🧸**김현준**
+  - Swagger
+  - 상품 추천, 검색
+- 🍕**장호준**
+  - jwt
+  - 관심 등록, 삭제, 목록, 전체삭제
+  - 장바구니 등록, 삭제, 목록, 전체삭제

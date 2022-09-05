@@ -23,6 +23,11 @@ public class InterestedService {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 
+    /**
+     * 관심 상품 등록
+     * @param productId 상품 고유 아이디
+     * @return productId에 해당하는 상품 정보
+     */
     @Transactional
     public ProductResponse save(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -50,6 +55,10 @@ public class InterestedService {
         return ProductResponse.of(product);
     }
 
+    /**
+     * 관심 상품 목록 조회
+     * @return 관심 상품 목록 리스트
+     */
     @Transactional(readOnly = true)
     public List<ProductResponse> getProductList() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -61,6 +70,10 @@ public class InterestedService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 관심 상품 삭제
+     * @param productId
+     */
     @Transactional
     public void delete(Long productId) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
@@ -74,6 +87,9 @@ public class InterestedService {
         interestedProductRepository.delete(interestedProduct);
     }
 
+    /**
+     * 관심 상품 전체 삭제
+     */
     @Transactional
     public void deleteAll() {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(
