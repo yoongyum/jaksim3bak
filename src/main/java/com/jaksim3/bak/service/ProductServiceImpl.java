@@ -19,7 +19,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
 
-    // 전체 금융 상품 목록
+    /**
+     * 전체 금융 상품 목록
+     * @return 전체 금융 상품 리스트
+     */
     @Transactional(readOnly = true)
     @Override
     public List<ProductDto.ProductResponse> findAll() {
@@ -28,7 +31,10 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductDto.ProductResponse::of).collect(Collectors.toList());
     }
 
-    // 맞춤 상품 목록
+    /**
+     * 맞춤 금융 상품 목록
+     * @return 맞춤 금융 상품 리스트
+     */
     @Transactional(readOnly = true)
     @Override
     public List<ProductDto.ProductResponse> findCustom() {
@@ -40,7 +46,10 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductDto.ProductResponse::of).collect(Collectors.toList());
     }
 
-    // 키워드로 검색
+    /**
+     * 기관 ( institution ) 또는 대출금 ( loan )으로 검색
+     * @return 키워드로 검색된 상품 리스트
+     */
     @Transactional(readOnly = true)
     public List<ProductDto.ProductResponse> searchKeyword(ProductDto.SearchRequest requestDto) {
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(

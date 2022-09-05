@@ -21,7 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui.html") // "/swagger-ui/index.html"
+        registry.addResourceHandler("/swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
@@ -36,7 +36,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
-//              .tags(new Tag("AuthController", "큰 제목 추가") );
     }
 
     private ApiInfo apiInfo() {
