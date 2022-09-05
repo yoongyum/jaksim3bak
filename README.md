@@ -232,8 +232,9 @@ https://vermillion-shortbread-f46c4f.netlify.app/
   - 서버 배포 
   - CI/CD
 - **김현준**
+  - Swagger
+  - 상품 추천, 검색
 - 👲**장호준**
   - jwt
   - 관심 등록, 삭제, 목록, 전체삭제
   - 장바구니 등록, 삭제, 목록, 전체삭제
-- **김성준**
