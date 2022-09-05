@@ -2,7 +2,6 @@ package com.jaksim3.bak.web.controller;
 
 import com.jaksim3.bak.service.MemberService;
 import com.jaksim3.bak.web.dto.MemberDto;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
