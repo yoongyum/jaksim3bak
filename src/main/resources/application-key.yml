@@ -2,10 +2,9 @@ spring:
   #DB Setting
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/jaksim3?autoReconnect=true
-  #  url: jdbc:mysql://mysql-container:3306/jaksim3?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql-container:3306/jaksim3?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: 1324
+    password: 1234
 
   #JPA Setting
   jpa:
