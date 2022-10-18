@@ -1,4 +1,4 @@
-# 💎 금융상품 쇼핑몰 만들기
+# 💎 금융상품 추천 서비스
 
 https://mango-tower-9f1.notion.site/7670e6d5a49d489f806ea2fb271d4fcb
 
